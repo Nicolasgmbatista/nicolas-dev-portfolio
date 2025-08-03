@@ -2,113 +2,419 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
+  <title>Quem limpa a sala hoje? (Protótipo)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Transformação Fitness</title>
-  <link rel="stylesheet" href="style.css" />
-  <meta name="description" content="Descubra o método simples para perder gordura sem academia cara. Guia grátis + oferta exclusiva." />
+  <style>
+    :root {
+      --bg:#f0f2f5;
+      --card:#fff;
+      --dark:#2c3e50;
+      --primary:#27ae60;
+      --muted:#6c7a89;
+      --radius:10px;
+      --shadow:0 12px 32px rgba(0,0,0,0.08);
+      --transition:.25s ease;
+      font-family: system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      min-height:100vh;
+      background:linear-gradient(135deg,#f0f2f5 0%,#ffffff 100%);
+      padding:24px;
+      display:flex;
+      justify-content:center;
+    }
+    .container{
+      width:100%;
+      max-width:500px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:24px 28px;
+      margin-bottom:16px;
+      box-shadow:var(--shadow);
+      position:relative;
+    }
+    h1{margin:0;font-size:1.75rem;color:var(--dark);}
+    h2{margin:0 0 8px;font-size:1.25rem;color:var(--dark);}
+    small{color:var(--muted);}
+    button{
+      cursor:pointer;
+      border:none;
+      border-radius:8px;
+      padding:10px 16px;
+      font-size:14px;
+      font-weight:600;
+      transition:var(--transition);
+    }
+    .btn-primary{background:var(--primary);color:#fff;}
+    .btn-secondary{background:#34495e;color:#fff;}
+    .btn-danger{background:#c0392b;color:#fff;}
+    .btn-sm{padding:6px 12px;font-size:12px;}
+    .flex{display:flex;gap:12px;align-items:center;}
+    .space-between{display:flex;justify-content:space-between;align-items:center;}
+    .pill{background:#ecf0f1;border-radius:999px;padding:6px 12px;font-size:12px;margin-right:6px;}
+    input{
+      padding:10px 14px;
+      border-radius:8px;
+      border:1px solid #dcdcdc;
+      flex:1;
+      font-size:14px;
+    }
+    ul{padding:0;list-style:none;margin:0;}
+    li{
+      background:#f9fafb;
+      padding:12px 14px;
+      border-radius:6px;
+      margin-bottom:8px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-weight:500;
+    }
+    .badge{background:#f1c40f;color:#000;border-radius:6px;padding:4px 10px;font-size:11px;margin-left:6px;}
+    .toast{
+      position:fixed;
+      top:16px;
+      right:16px;
+      background:#333;
+      color:#fff;
+      padding:14px 20px;
+      border-radius:8px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.2);
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .3s ease;
+      z-index:100;
+    }
+    .toast.show{opacity:1;pointer-events:auto;}
+    .tag{background:#e1e8f0;border-radius:4px;padding:4px 8px;font-size:11px;margin-right:4px;}
+    .inline{display:inline-flex;gap:6px;align-items:center;}
+  </style>
 </head>
 <body>
-  <header class="hero">
-    <div class="container">
-      <h1>Perder Gordura Sem Complicação</h1>
-      <p class="sub">Transforme seu corpo em 30 dias com o método que funciona mesmo sem academia. Sem enrolação, sem aparecer.</p>
-      <a href="tripwire.html" class="btn-primary">Comece por R$27</a>
-      <p class="small">+ Receba o mini-guia grátis: “3 erros que travam seu emagrecimento”</p>
+  <div class="container">
+    <div class="card" id="panel-login">
+      <h1>Quem limpa a sala hoje?</h1>
+      <p>Escolha o perfil:</p>
+      <div class="flex">
+        <button class="btn-primary" id="login-admin">Administrador</button>
+        <button class="btn-secondary" id="login-estudante">Estudante</button>
+      </div>
+      <small>Protótipo sem backend. Tudo salva no navegador.</small>
     </div>
-  </header>
 
-  <section class="features">
-    <div class="container">
-      <h2>O que você vai conseguir</h2>
-      <div class="cards">
-        <div class="card">
-          <h3>Sem academia</h3>
-          <p>Rotinas simples que você faz em casa. Nenhum equipamento caro necessário.</p>
+    <div class="card" id="panel-main" style="display:none;">
+      <div class="space-between">
+        <div>
+          <h2>Escala de hoje</h2>
+          <div><span id="role-badge" class="badge">Estudante</span> <small id="subinfo">Turma: Matutino</small></div>
         </div>
-        <div class="card">
-          <h3>Resultados rápidos</h3>
-          <p>Foco em hábitos que entregam progresso visível em semanas, não em meses.</p>
-        </div>
-        <div class="card">
-          <h3>Passo a passo</h3>
-          <p>Você recebe um plano claro, sem enrolação, seguido por quem já obteve resultado.</p>
+        <div>
+          <button class="btn-sm" id="btn-reset">Resetar</button>
+          <button class="btn-sm" id="btn-logout">Sair</button>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section class="testimonials">
-    <div class="container">
-      <h2>O que outras pessoas dizem</h2>
-      <div class="test-grid">
-        <div class="test-card">
-          <p class="quote">"Perdi 5kg em 3 semanas sem sair de casa. Simples e direto."</p>
-          <p class="author">— João, 27 anos</p>
-        </div>
-        <div class="test-card">
-          <p class="quote">"O checklist mudou minha rotina. Tô mais confiante e mais magro."</p>
-          <p class="author">— Maria, 33 anos</p>
-        </div>
-        <div class="test-card">
-          <p class="quote">"Achei que era impossível sem academia. Me enganei — valeu cada segundo."</p>
-          <p class="author">— Lucas, 21 anos</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="oferta" class="offer">
-    <div class="container">
-      <div class="offer-box">
-        <div class="badge">Oferta Limitada</div>
-        <h2>Plano Completo de Transformação</h2>
-        <p class="lead">Acesso ao método testado + bônus exclusivo. Comece hoje com o guia e ganhe um plano rápido de 30 dias.</p>
-        <ul>
-          <li>Checklist de erros que sabotam emagrecimento</li>
-          <li>Rotinas fáceis de fazer em casa</li>
-          <li>Mini-plano alimentar sem dietas malucas</li>
-          <li>Bônus: dica secreta para manter consistência</li>
-        </ul>
-        <p class="price">Preço especial: <strong>R$ 197</strong></p>
-        <a href="https://SEU_LINK_DE_AFILIADO_HIGH_TICKET" class="btn-secondary" target="_blank" rel="noopener">Quero o método completo</a>
-        <p class="urgency">Últimas vagas com bônus — expira em <span id="countdown">03d 12h</span></p>
+      <div style="margin-top:12px;" id="escala-list-container">
+        <ul id="listaEscala"></ul>
+        <div id="nenhum" style="display:none;"><em>Nenhuma escala disponível.</em></div>
       </div>
 
-      <div class="lead-capture">
-        <h3>Receba o mini-guia grátis</h3>
-        <p>3 erros que travam sua perda de gordura e o plano rápido para corrigir.</p>
-        <form id="lead-form">
-          <input type="email" placeholder="Seu melhor e-mail" required />
-          <button type="submit">Quero o guia</button>
-        </form>
-        <p class="disclaimer">Você será redirecionado e receberá e-mail com o material. Sem spam.</p>
+      <div style="margin-top:16px;" id="acoes-admin" >
+        <div class="flex">
+          <button class="btn-primary" id="btn-gerar">Gerar nova escala</button>
+          <button class="btn-secondary" id="btn-marcar-faltante">Marcar faltante</button>
+        </div>
+        <div style="margin-top:12px;">
+          <strong>Faltantes pendentes:</strong>
+          <div id="faltantesPendentesContainer"></div>
+        </div>
+      </div>
+
+      <div class="card" id="panel-nomes" style="margin-top:20px;">
+        <div class="space-between">
+          <div><h2>Lista de nomes</h2></div>
+          <div><button class="btn-sm" id="btn-adicionar-nome">Adicionar</button></div>
+        </div>
+        <div class="flex" style="margin-top:8px;">
+          <input id="input-nome" placeholder="Novo nome" />
+          <select id="select-turma">
+            <option value="matutino">Matutino</option>
+            <option value="vespertino">Vespertino</option>
+          </select>
+        </div>
+        <ul id="listaNomes" style="margin-top:12px;"></ul>
+      </div>
+
+      <div style="margin-top:16px;">
+        <small>Dica: marque quem faltou, ele volta no próximo dia com a mesma tarefa e é substituído agora.</small>
       </div>
     </div>
-  </section>
+  </div>
 
-  <footer class="footer">
-    <div class="container">
-      <p>🔗 Este site usa links de afiliado. Se você comprar através do link, posso receber uma comissão sem custo extra pra você. Obrigado pelo apoio.</p>
-      <p>&copy; 2025 Transformação Fitness. Todos os direitos reservados.</p>
-    </div>
-  </footer>
+  <div class="toast" id="toast">Mensagem</div>
 
   <script>
-    const countdownEl = document.getElementById('countdown');
-    let days = 3, hours = 12;
-    setInterval(() => {
-      if (hours === 0) {
-        if (days > 0) { days--; hours = 23; }
-      } else {
-        hours--;
+    // Estado simples em localStorage
+    const STORAGE_KEY = 'protótipo_escala';
+    function carregar() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        try { return JSON.parse(raw); } catch {}
       }
-      countdownEl.textContent = `${String(days).padStart(2,'0')}d ${String(hours).padStart(2,'0')}h`;
-    }, 3600000);
+      return {
+        turma: 'matutino',
+        nomes: {
+          matutino: ['Ana','Beatriz','Bernardo','Emanuelly','Gabriel','Gabrielle'],
+          vespertino: []
+        },
+        escalaAtual: [],
+        historicoTarefa: {},
+        faltantesPendentes: []
+      };
+    }
+    function salvar(state) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+    let state = carregar();
 
-    document.getElementById('lead-form').addEventListener('submit', e => {
-      e.preventDefault();
-      alert('Obrigado! Verifique seu e-mail para o mini-guia.'); // substituir por integração real
+    // Util de toast
+    function toast(msg, duration=2000) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(()=> t.classList.remove('show'), duration);
+    }
+
+    // Alternância tarefa
+    function tarefaAlternada(ultima, atualNaEscala) {
+      if (!atualNaEscala || atualNaEscala.length === 0) {
+        return ultima === 'chão' ? 'mesa' : 'chão';
+      }
+      return atualNaEscala[0].tarefa === 'mesa' ? 'chão' : 'mesa';
+    }
+
+    function proximoIndice(nomes, atual, ignorados=[]) {
+      if (nomes.length === 0) return -1;
+      let i = atual;
+      if (i < 0 || i >= nomes.length) i = -1;
+      for (let c=0;c<nomes.length;c++) {
+        i = (i+1)%nomes.length;
+        if (!ignorados.includes(nomes[i])) return i;
+      }
+      return -1;
+    }
+
+    function gerarEscala() {
+      const t = state.turma;
+      const nomes = state.nomes[t];
+      if (!nomes || nomes.length === 0) {
+        state.escalaAtual = [];
+        toast('Nenhum nome cadastrado na turma.');
+        salvar(state);
+        render();
+        return;
+      }
+
+      // Começa com dois faltantes, limitando a 2
+      let escala = [...state.faltantesPendentes];
+      if (escala.length > 2) {
+        const extras = escala.slice(2);
+        state.faltantesPendentes = extras.map(f=>({ ...f }));
+        escala = escala.slice(0,2);
+      } else {
+        state.faltantesPendentes = [];
+      }
+
+      // preencher até 2
+      let usados = escala.map(p=>p.nome);
+      let idx = -1;
+      while (escala.length < 2 && usados.length < nomes.length) {
+        idx = proximoIndice(nomes, idx, usados);
+        if (idx === -1) break;
+        const nome = nomes[idx];
+        if (state.faltantesPendentes.some(f=>f.nome === nome)) {
+          usados.push(nome);
+          continue;
+        }
+        const ultima = state.historicoTarefa[nome];
+        const tarefa = escala.length === 0 ? (ultima === 'chão' ? 'mesa' : 'chão') : (escala[0].tarefa === 'mesa' ? 'chão' : 'mesa');
+        escala.push({ nome, tarefa, index: idx });
+        state.historicoTarefa[nome] = tarefa;
+        state.posicaoUltimaEscala = idx;
+        usados.push(nome);
+      }
+
+      state.escalaAtual = escala;
+      salvar(state);
+      toast('Escala gerada.');      
+      render();
+    }
+
+    function marcarFaltante() {
+      if (state.escalaAtual.length === 0) {
+        toast('Nada para marcar.');
+        return;
+      }
+      // escolhe o primeiro da escala como faltante só pra demo
+      const faltante = state.escalaAtual[0];
+      state.faltantesPendentes.push({ ...faltante });
+      substituirPessoaNaEscala(faltante.nome, faltante.tarefa);
+      salvar(state);
+      toast(`${faltante.nome} marcado como faltante.`);
+      render();
+    }
+
+    function substituirPessoaNaEscala(nomeRemovido, tarefa) {
+      const t = state.turma;
+      const nomes = state.nomes[t];
+      if (!nomes || nomes.length === 0) {
+        state.escalaAtual = [];
+        state.faltantesPendentes = state.faltantesPendentes.filter(f => f.nome !== nomeRemovido);
+        return;
+      }
+      // remove
+      state.escalaAtual = state.escalaAtual.filter(p => p.nome !== nomeRemovido);
+
+      const usados = [
+        ...state.escalaAtual.map(p=>p.nome),
+        ...state.faltantesPendentes.map(f=>f.nome)
+      ];
+      let idx = state.posicaoUltimaEscala ?? -1;
+      while (state.escalaAtual.length < 2 && usados.length < nomes.length) {
+        idx = proximoIndice(nomes, idx, usados);
+        if (idx === -1) break;
+        const novoNome = nomes[idx];
+        if (state.faltantesPendentes.some(f=>f.nome === novoNome)) {
+          usados.push(novoNome);
+          continue;
+        }
+        const ultima = state.historicoTarefa[novoNome];
+        const tarefaNova = state.escalaAtual.length === 0 ? (ultima === 'chão' ? 'mesa' : 'chão') : (state.escalaAtual[0].tarefa === 'mesa' ? 'chão' : 'mesa');
+        state.escalaAtual.push({ nome: novoNome, tarefa: tarefaNova, index: idx });
+        state.historicoTarefa[novoNome] = tarefaNova;
+        state.posicaoUltimaEscala = idx;
+        usados.push(novoNome);
+      }
+    }
+
+    function resetar() {
+      state.escalaAtual = [];
+      state.faltantesPendentes = [];
+      state.historicoTarefa = {};
+      state.posicaoUltimaEscala = -1;
+      salvar(state);
+      toast('Escala resetada.');
+      render();
+    }
+
+    // UI
+    function render() {
+      // painel
+      document.getElementById('panel-login').style.display = 'none';
+      document.getElementById('panel-main').style.display = 'block';
+      document.getElementById('role-badge').textContent = isAdmin ? 'Administrador' : 'Estudante';
+      document.getElementById('subinfo').textContent = `Turma: ${state.turma.charAt(0).toUpperCase()+state.turma.slice(1)}`;
+
+      // escala
+      const ul = document.getElementById('listaEscala');
+      ul.innerHTML = '';
+      if (!state.escalaAtual || state.escalaAtual.length === 0) {
+        document.getElementById('nenhum').style.display = 'block';
+      } else {
+        document.getElementById('nenhum').style.display = 'none';
+        state.escalaAtual.forEach(p => {
+          const li = document.createElement('li');
+          li.innerHTML = `<div>${p.nome}</div><div><span class="pill">${p.tarefa}</span></div>`;
+          ul.appendChild(li);
+        });
+      }
+
+      // nomes
+      const listaNomes = document.getElementById('listaNomes');
+      listaNomes.innerHTML = '';
+      (state.nomes[state.turma] || []).forEach((nome, idx) => {
+        const li = document.createElement('li');
+        li.innerHTML = `<div>${nome}</div>`;
+        if (isAdmin) {
+          const rem = document.createElement('button');
+          rem.textContent = 'Remover';
+          rem.className = 'btn-sm';
+          rem.style.marginLeft='8px';
+          rem.addEventListener('click', () => {
+            state.nomes[state.turma].splice(idx,1);
+            // ajustar escala se necessário
+            if (state.escalaAtual.some(p=>p.nome===nome)) {
+              state.escalaAtual = state.escalaAtual.filter(p=>p.nome!==nome);
+            }
+            state.faltantesPendentes = state.faltantesPendentes.filter(f=>f.nome!==nome);
+            salvar(state);
+            render();
+          });
+          li.appendChild(rem);
+        }
+        listaNomes.appendChild(li);
+      });
+
+      // faltantes pendentes
+      const fCont = document.getElementById('faltantesPendentesContainer');
+      fCont.innerHTML = '';
+      if (state.faltantesPendentes.length === 0) {
+        fCont.textContent = '(nenhum)';
+      } else {
+        state.faltantesPendentes.forEach(f => {
+          const span = document.createElement('span');
+          span.className='tag';
+          span.textContent = `${f.nome} (${f.tarefa})`;
+          fCont.appendChild(span);
+        });
+      }
+
+      // mostrar/ocultar ações admin
+      document.getElementById('acoes-admin').style.display = isAdmin ? 'block' : 'none';
+    }
+
+    // login simulados
+    let isAdmin = false;
+    document.getElementById('login-admin').addEventListener('click', () => {
+      isAdmin = true;
+      render();
     });
+    document.getElementById('login-estudante').addEventListener('click', () => {
+      isAdmin = false;
+      render();
+    });
+    document.getElementById('btn-logout').addEventListener('click', () => {
+      document.getElementById('panel-main').style.display='none';
+      document.getElementById('panel-login').style.display='block';
+    });
+    document.getElementById('btn-gerar').addEventListener('click', gerarEscala);
+    document.getElementById('btn-marcar-faltante').addEventListener('click', marcarFaltante);
+    document.getElementById('btn-reset').addEventListener('click', resetar);
+    document.getElementById('btn-adicionar-nome').addEventListener('click', () => {
+      const nome = document.getElementById('input-nome').value.trim();
+      if (!nome) { toast('Digite um nome.'); return; }
+      if (!state.nomes[state.turma].some(n=>n.toLowerCase()===nome.toLowerCase())) {
+        state.nomes[state.turma].push(nome);
+        state.nomes[state.turma].sort((a,b)=>a.localeCompare(b,'pt-BR'));
+        document.getElementById('input-nome').value='';
+        salvar(state);
+        render();
+      } else {
+        toast('Nome já existe.');
+      }
+    });
+    document.getElementById('select-turma').addEventListener('change', (e) => {
+      state.turma = e.target.value;
+      salvar(state);
+      render();
+    });
+
+    // init
+    render();
   </script>
 </body>
 </html>
