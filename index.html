@@ -21,11 +21,25 @@
       height: 100%;
       width: 250px;
       overflow-y: visible;
+      border-right: 1px solid #4a5568;
+      border-radius: 0 1rem 0 0;
+      padding: 1rem;
     }
     .content {
       margin-left: 250px;
-      padding-top: 20px;
+      padding-top: 60px; /* Ajustado para dar espaço à navbar */
       min-height: 100vh;
+    }
+    .navbar {
+      background-color: #2d3748;
+      position: fixed;
+      top: 0;
+      left: 250px;
+      right: 0;
+      padding: 1rem;
+      border-bottom: 1px solid #4a5568;
+      border-radius: 0 0 1rem 0;
+      z-index: 10;
     }
     .section {
       display: none;
@@ -47,6 +61,7 @@
       margin-bottom: 1.5rem;
       padding-bottom: 1.5rem;
       border-bottom: 1px solid #4a5568;
+      border-radius: 0.5rem;
     }
     .card-section:last-child {
       margin-bottom: 0;
@@ -77,30 +92,44 @@
       .sidebar.open {
         transform: translateX(0);
       }
+      .navbar {
+        left: 0;
+        border-radius: 0;
+      }
       .content {
         margin-left: 0;
-        padding-top: 4rem;
+        padding-top: 50px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Sidebar -->
-  <aside id="sidebar" class="sidebar p-4">
+  <!-- Navbar (opções no canto superior oposto) -->
+  <nav class="navbar">
+    <ul class="flex justify-end space-x-4">
+      <li><a href="#" class="nav-link hover:text-blue-400" data-section="sobre"><i class="fas fa-user"></i> Sobre Mim</a></li>
+      <li><a href="#" class="nav-link hover:text-blue-400" data-section="habilidades"><i class="fas fa-tools"></i> Habilidades</a></li>
+      <li><a href="#" class="nav-link hover:text-blue-400" data-section="projetos"><i class="fas fa-folder"></i> Projetos</a></li>
+      <li><a href="#" class="nav-link hover:text-blue-400" data-section="contato"><i class="fas fa-envelope"></i> Contato</a></li>
+    </ul>
+  </nav>
+
+  <!-- Sidebar (informações laterais) -->
+  <aside id="sidebar" class="sidebar">
     <div class="text-center mb-6">
       <img src="https://via.placeholder.com/80" alt="Foto de Perfil" class="rounded-full mx-auto mb-2">
       <h2 class="text-xl font-bold text-white whitespace-nowrap overflow-hidden text-ellipsis">Seu Nome</h2>
-      <p class="text-sm text-gray-400 whitespace-nowrap overflow-hidden text-ellipsis">Desenvolvedor</p>
     </div>
-    <ul class="space-y-4">
-      <li><a href="#" class="nav-link block hover:text-blue-400" data-section="sobre"><i class="fas fa-user"></i> Sobre Mim</a></li>
-      <li><a href="#" class="nav-link block hover:text-blue-400" data-section="habilidades"><i class="fas fa-tools"></i> Habilidades</a></li>
-      <li><a href="#" class="nav-link block hover:text-blue-400" data-section="projetos"><i class="fas fa-folder"></i> Projetos</a></li>
-      <li><a href="#" class="nav-link block hover:text-blue-400" data-section="contato"><i class="fas fa-envelope"></i> Contato</a></li>
-    </ul>
-    <div class="mt-6 text-gray-400 text-center">
+    <div class="mb-6">
+      <p class="text-sm text-gray-400 mb-2">E-mail: [seuemail@exemplo.com]</p>
+      <p class="text-sm text-gray-400 mb-2">Telefone: [seu número]</p>
+      <p class="text-sm text-gray-400 mb-2">Aniversário: [data, ex.: 15/03/1990]</p>
+      <p class="text-sm text-gray-400 mb-2">Localização: [Cidade, País]</p>
+    </div>
+    <div class="mt-auto text-gray-400 text-center">
+      <a href="https://instagram.com/seuusername" class="hover:text-blue-400 mr-2"><i class="fab fa-instagram"></i></a>
       <a href="https://github.com/seuusername" class="hover:text-blue-400 mr-2"><i class="fab fa-github"></i></a>
-      <a href="https://linkedin.com/in/seuusername" class="hover:text-blue-400 ml-2"><i class="fab fa-linkedin"></i></a>
+      <a href="https://linkedin.com/in/seuusername" class="hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
     </div>
   </aside>
 
@@ -200,57 +229,56 @@
       <div class="card">
         <h2 class="text-3xl font-bold mb-6">Contato</h2>
         <p class="text-gray-300 mb-2">E-mail: [seuemail@exemplo.com]</p>
-        <p class="text-gray-300 mb-2">Telefone: [seu número de telefone]</p>
+        <p class="text-gray-400 mb-2">Telefone: [seu número de telefone]</p>
         <p class="text-gray-300 mb-2">Localização: [Cidade, País]</p>
         <div class="mt-4">
           <a href="https://github.com/seuusername" class="text-blue-400 hover:underline mr-4"><i class="fab fa-github"></i></a>
           <a href="https://linkedin.com/in/seuusername" class="text-blue-400 hover:underline"><i class="fab fa-linkedin"></i></a>
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
+    </main>
 
-  <script>
-    // Sidebar Toggle (para mobile apenas)
-    const menuToggle = document.getElementById('menu-toggle');
-    const sidebar = document.getElementById('sidebar');
-    const content = document.querySelector('.content');
+    <script>
+      // Sidebar Toggle (para mobile apenas)
+      const menuToggle = document.getElementById('menu-toggle');
+      const sidebar = document.getElementById('sidebar');
+      const content = document.querySelector('.content');
 
-    if (menuToggle) {
-      menuToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('open');
-        content.classList.toggle('shifted');
-      });
-    }
-
-    // Section Navigation
-    const navLinks = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('.section');
-
-    navLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const sectionId = link.getAttribute('data-section');
-        sections.forEach(section => section.classList.remove('active'));
-        const targetSection = document.getElementById(sectionId);
-        if (targetSection) {
-          targetSection.classList.add('active');
-        }
-        
-        if (window.innerWidth < 768) {
-          sidebar.classList.remove('open');
-          content.classList.remove('shifted');
-        }
-      });
-    });
-
-    // Activate first section by default
-    window.addEventListener('load', () => {
-      const defaultSection = document.getElementById('sobre');
-      if (defaultSection) {
-        defaultSection.classList.add('active');
+      if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+          sidebar.classList.toggle('open');
+          content.classList.toggle('shifted');
+        });
       }
-    });
-  </script>
-</body>
+
+      // Section Navigation
+      const navLinks = document.querySelectorAll('.nav-link');
+      const sections = document.querySelectorAll('.section');
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const sectionId = link.getAttribute('data-section');
+          sections.forEach(section => section.classList.remove('active'));
+          const targetSection = document.getElementById(sectionId);
+          if (targetSection) {
+            targetSection.classList.add('active');
+          }
+          
+          if (window.innerWidth < 768) {
+            sidebar.classList.remove('open');
+            content.classList.remove('shifted');
+          }
+        });
+      });
+
+      // Activate first section by default
+      window.addEventListener('load', () => {
+        const defaultSection = document.getElementById('sobre');
+        if (defaultSection) {
+          defaultSection.classList.add('active');
+        }
+      });
+    </script>
+  </body>
 </html>
