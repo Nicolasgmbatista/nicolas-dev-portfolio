@@ -19,14 +19,12 @@
       top: 0;
       left: 0;
       height: 100%;
-      width: 250px; /* Largura fixa para evitar cortes */
-      transition: none; /* Removido para manter visível */
-      overflow-y: visible; /* Garantir que todo o conteúdo seja exibido */
+      width: 250px;
+      overflow-y: visible;
     }
     .content {
-      margin-left: 250px; /* Ajustado para corresponder à largura da sidebar */
+      margin-left: 250px;
       padding-top: 20px;
-      transition: none; /* Removido para consistência */
       min-height: 100vh;
     }
     .section {
@@ -74,7 +72,7 @@
       .sidebar {
         transform: translateX(-100%);
         z-index: 20;
-        width: 250px; /* Manter largura fixa mesmo em mobile quando aberto */
+        width: 250px;
       }
       .sidebar.open {
         transform: translateX(0);
@@ -213,15 +211,17 @@
   </main>
 
   <script>
-    // Sidebar Toggle (removido para manter visível)
+    // Sidebar Toggle (para mobile apenas)
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
     const content = document.querySelector('.content');
 
-    menuToggle.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
-      content.classList.toggle('shifted');
-    });
+    if (menuToggle) {
+      menuToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+        content.classList.toggle('shifted');
+      });
+    }
 
     // Section Navigation
     const navLinks = document.querySelectorAll('.nav-link');
@@ -232,7 +232,10 @@
         e.preventDefault();
         const sectionId = link.getAttribute('data-section');
         sections.forEach(section => section.classList.remove('active'));
-        document.getElementById(sectionId).classList.add('active');
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) {
+          targetSection.classList.add('active');
+        }
         
         if (window.innerWidth < 768) {
           sidebar.classList.remove('open');
@@ -243,7 +246,10 @@
 
     // Activate first section by default
     window.addEventListener('load', () => {
-      document.getElementById('sobre').classList.add('active');
+      const defaultSection = document.getElementById('sobre');
+      if (defaultSection) {
+        defaultSection.classList.add('active');
+      }
     });
   </script>
 </body>
