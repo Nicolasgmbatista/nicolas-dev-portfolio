@@ -19,21 +19,15 @@
       top: 0;
       left: 0;
       height: 100%;
-      width: 64px;
-      transition: width 0.3s ease;
-      overflow-y: auto;
-    }
-    .sidebar.open {
-      width: 250px;
+      width: 250px; /* Largura fixa para evitar cortes */
+      transition: none; /* Removido para manter visível */
+      overflow-y: visible; /* Garantir que todo o conteúdo seja exibido */
     }
     .content {
-      margin-left: 64px;
+      margin-left: 250px; /* Ajustado para corresponder à largura da sidebar */
       padding-top: 20px;
-      transition: margin-left 0.3s ease;
+      transition: none; /* Removido para consistência */
       min-height: 100vh;
-    }
-    .content.shifted {
-      margin-left: 250px;
     }
     .section {
       display: none;
@@ -80,6 +74,7 @@
       .sidebar {
         transform: translateX(-100%);
         z-index: 20;
+        width: 250px; /* Manter largura fixa mesmo em mobile quando aberto */
       }
       .sidebar.open {
         transform: translateX(0);
@@ -87,9 +82,6 @@
       .content {
         margin-left: 0;
         padding-top: 4rem;
-      }
-      .content.shifted {
-        margin-left: 0;
       }
     }
   </style>
@@ -221,7 +213,7 @@
   </main>
 
   <script>
-    // Sidebar Toggle
+    // Sidebar Toggle (removido para manter visível)
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
     const content = document.querySelector('.content');
