@@ -27,7 +27,7 @@
     }
     .content {
       margin-left: 250px;
-      padding-top: 60px; /* Ajustado para dar espaço à navbar */
+      padding-top: 60px;
       min-height: 100vh;
     }
     .navbar {
@@ -104,7 +104,7 @@
   </style>
 </head>
 <body>
-  <!-- Navbar (opções no canto superior oposto) -->
+  <!-- Navbar (opções no canto superior) -->
   <nav class="navbar">
     <ul class="flex justify-end space-x-4">
       <li><a href="#" class="nav-link hover:text-blue-400" data-section="sobre"><i class="fas fa-user"></i> Sobre Mim</a></li>
@@ -114,10 +114,10 @@
     </ul>
   </nav>
 
-  <!-- Sidebar (informações laterais) -->
+  <!-- Sidebar -->
   <aside id="sidebar" class="sidebar">
     <div class="text-center mb-6">
-<img src="img/perfil.jpg" alt="Foto de Perfil" class="rounded-full mx-auto mb-2">
+      <img src="img/perfil.jpg" alt="Foto de Perfil" class="rounded-full mx-auto mb-2">
       <h2 class="text-xl font-bold text-white whitespace-nowrap overflow-hidden text-ellipsis">Seu Nome</h2>
     </div>
     <div class="mb-6">
@@ -235,50 +235,34 @@
           <a href="https://github.com/seuusername" class="text-blue-400 hover:underline mr-4"><i class="fab fa-github"></i></a>
           <a href="https://linkedin.com/in/seuusername" class="text-blue-400 hover:underline"><i class="fab fa-linkedin"></i></a>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
+  </main>
 
-    <script>
-      // Sidebar Toggle (para mobile apenas)
-      const menuToggle = document.getElementById('menu-toggle');
-      const sidebar = document.getElementById('sidebar');
-      const content = document.querySelector('.content');
+  <script>
+    // Section Navigation
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('.section');
 
-      if (menuToggle) {
-        menuToggle.addEventListener('click', () => {
-          sidebar.classList.toggle('open');
-          content.classList.toggle('shifted');
-        });
-      }
-
-      // Section Navigation
-      const navLinks = document.querySelectorAll('.nav-link');
-      const sections = document.querySelectorAll('.section');
-
-      navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          const sectionId = link.getAttribute('data-section');
-          sections.forEach(section => section.classList.remove('active'));
-          const targetSection = document.getElementById(sectionId);
-          if (targetSection) {
-            targetSection.classList.add('active');
-          }
-          
-          if (window.innerWidth < 768) {
-            sidebar.classList.remove('open');
-            content.classList.remove('shifted');
-          }
-        });
-      });
-
-      // Activate first section by default
-      window.addEventListener('load', () => {
-        const defaultSection = document.getElementById('sobre');
-        if (defaultSection) {
-          defaultSection.classList.add('active');
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const sectionId = link.getAttribute('data-section');
+        sections.forEach(section => section.classList.remove('active'));
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) {
+          targetSection.classList.add('active');
         }
       });
-    </script>
-  </body>
+    });
+
+    // Activate first section by default
+    window.addEventListener('load', () => {
+      const defaultSection = document.getElementById('sobre');
+      if (defaultSection) {
+        defaultSection.classList.add('active');
+      }
+    });
+  </script>
+</body>
 </html>
