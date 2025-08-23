@@ -310,7 +310,7 @@
         if (targetSection) {
           targetSection.classList.add('active');
           window.scrollTo({
-            top: targetSection.offsetTop - 10,
+            top: targetSection.offsetTop - 100,
             behavior: 'smooth'
           });
         }
@@ -318,7 +318,7 @@
     });
 
     window.addEventListener('load', () => {
-      window.scrollTo(0, 0); // garante que o scroll inicia no topo
+      window.scrollTo(10, 0); // garante que o scroll inicia no topo
       const defaultSection = document.getElementById('sobre');
       if (defaultSection) defaultSection.classList.add('active');
     });
