@@ -19,7 +19,7 @@
       top: 20px;
       left: 20px;
       height: auto;
-      width: 200px;
+      width: 250px; /* Increased width to accommodate content */
       overflow-y: visible;
       border-radius: 15px;
       padding: 1rem;
@@ -27,27 +27,37 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
     .content {
-      margin-left: 240px; /* Alinha com a largura da sidebar + margem */
-      padding-top: 80px; /* Espaço para a navbar no topo, ajustado para alinhamento */
+      margin-left: 290px; /* Adjusted to match new sidebar width + margin */
+      padding-top: 80px; /* Space for the navbar */
       min-height: 100vh;
     }
     .navbar {
       background-color: #2d3748;
       position: fixed;
-      top: 20px; /* Alinha verticalmente com a sidebar */
-      left: 240px; /* Começa após a sidebar */
-      right: 0;
-      padding: 1rem;
+      top: 20px;
+      left: 290px; /* Aligned with new sidebar width */
+      right: 20px; /* Added right margin for consistency */
+      padding: 0.5rem 1rem; /* Reduced padding for compactness */
       border: 1px solid #4a5568;
       z-index: 10;
-      border-radius: 15px; /* Arredondamento completo */
-      height: 60px; /* Altura fixa para consistência */
+      border-radius: 15px;
+      height: 50px; /* Reduced height for compactness */
+    }
+    .navbar ul {
+      display: flex;
+      justify-content: center; /* Centered navigation items */
+      align-items: center;
+      gap: 1.5rem; /* Adjusted spacing between items */
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      height: 100%;
     }
     .section {
       display: none;
       padding: 2rem;
       animation: fadeIn 0.5s ease-in;
-      margin-top: 80px; /* Alinha o conteúdo das seções logo abaixo da navbar */
+      margin-top: 80px; /* Aligns content below navbar */
     }
     .section.active {
       display: block;
@@ -101,6 +111,7 @@
       }
       .navbar {
         left: 0;
+        right: 0;
       }
       .content {
         margin-left: 0;
@@ -112,7 +123,7 @@
 <body>
   <!-- Navbar -->
   <nav class="navbar">
-    <ul class="flex justify-end space-x-4 items-center h-full">
+    <ul>
       <li><a href="#" class="nav-link hover:text-blue-400" data-section="sobre"><i class="fas fa-user"></i> Sobre Mim</a></li>
       <li><a href="#" class="nav-link hover:text-blue-400" data-section="habilidades"><i class="fas fa-tools"></i> Habilidades</a></li>
       <li><a href="#" class="nav-link hover:text-blue-400" data-section="formacao"><i class="fas fa-graduation-cap"></i> Formação</a></li>
@@ -275,7 +286,7 @@
         const targetSection = document.getElementById(sectionId);
         if (targetSection) {
           targetSection.classList.add('active');
-          window.scrollTo({ top: targetSection.offsetTop - 80, behavior: 'smooth' }); // Ajusta o scroll para alinhar com a navbar
+          window.scrollTo({ top: targetSection.offsetTop - 80, behavior: 'smooth' });
         }
       });
     });
