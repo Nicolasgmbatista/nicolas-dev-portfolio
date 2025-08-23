@@ -16,7 +16,7 @@
     .sidebar {
       background-color: #2d3748;
       position: sticky;
-      top: 0; /* Alinhado ao topo */
+      top: 20px;
       left: 20px;
       height: auto;
       width: 250px;
@@ -28,13 +28,13 @@
     }
     .content {
       margin-left: 280px; /* Aligned with sidebar width + padding + border */
-      padding-top: 60px; /* Igual à altura da navbar para alinhamento perfeito */
+      padding-top: 90px; /* Adjusted to align with navbar height */
       min-height: 100vh;
     }
     .navbar {
       background-color: #2d3748;
       position: fixed;
-      top: 0; /* Encostada no topo */
+      top: 20px;
       left: 280px; /* Aligned with content margin */
       right: 20px; /* Matches the content's right margin for proportionality */
       padding: 1rem;
@@ -42,7 +42,7 @@
       z-index: 10;
       border-radius: 15px;
       height: 60px;
-      max-width: calc(100% - 300px); /* Adjusted to match the content width */
+      max-width: calc(100% - 300px); /* Adjusted to match the content width, accounting for sidebar */
     }
     .navbar ul {
       flex justify-end space-x-4 items-center h-full;
@@ -54,7 +54,7 @@
       display: none;
       padding: 2rem;
       animation: fadeIn 0.5s ease-in;
-      margin-top: 0; /* Alinhado diretamente com a navbar */
+      margin-top: 0; /* Removed to align directly with navbar */
     }
     .section.active {
       display: block;
@@ -284,7 +284,7 @@
         const targetSection = document.getElementById(sectionId);
         if (targetSection) {
           targetSection.classList.add('active');
-          window.scrollTo({ top: targetSection.offsetTop - 60, behavior: 'smooth' }); // Ajustado para a altura da navbar (60px)
+          window.scrollTo({ top: targetSection.offsetTop - 80, behavior: 'smooth' });
         }
       });
     });
@@ -294,7 +294,7 @@
       const defaultSection = document.getElementById('sobre');
       if (defaultSection) {
         defaultSection.classList.add('active');
-        window.scrollTo({ top: defaultSection.offsetTop - 60, behavior: 'smooth' }); // Ajustado para a altura da navbar
+        window.scrollTo({ top: defaultSection.offsetTop - 80, behavior: 'smooth' });
       }
     });
   </script>
