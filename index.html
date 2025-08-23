@@ -15,34 +15,39 @@
     }
     .sidebar {
       background-color: #2d3748;
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 250px;
-      overflow-y: auto;
-      border-right: 1px solid #4a5568;
+      position: sticky;
+      top: 20px;
+      left: 20px;
+      height: auto;
+      width: 200px;
+      overflow-y: visible;
+      border-radius: 15px;
       padding: 1rem;
+      border: 1px solid #4a5568;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
     .content {
-      margin-left: 250px;
-      padding-top: 60px;
+      margin-left: 240px; /* Alinha com a largura da sidebar + margem */
+      padding-top: 80px; /* Espaço para a navbar no topo, ajustado para alinhamento */
       min-height: 100vh;
     }
     .navbar {
       background-color: #2d3748;
       position: fixed;
-      top: 0;
-      left: 250px;
+      top: 20px; /* Alinha verticalmente com a sidebar */
+      left: 240px; /* Começa após a sidebar */
       right: 0;
       padding: 1rem;
-      border-bottom: 1px solid #4a5568;
+      border: 1px solid #4a5568;
       z-index: 10;
+      border-radius: 15px; /* Arredondamento completo */
+      height: 60px; /* Altura fixa para consistência */
     }
     .section {
       display: none;
       padding: 2rem;
       animation: fadeIn 0.5s ease-in;
+      margin-top: 80px; /* Alinha o conteúdo das seções logo abaixo da navbar */
     }
     .section.active {
       display: block;
@@ -107,7 +112,7 @@
 <body>
   <!-- Navbar -->
   <nav class="navbar">
-    <ul class="flex justify-end space-x-4">
+    <ul class="flex justify-end space-x-4 items-center h-full">
       <li><a href="#" class="nav-link hover:text-blue-400" data-section="sobre"><i class="fas fa-user"></i> Sobre Mim</a></li>
       <li><a href="#" class="nav-link hover:text-blue-400" data-section="habilidades"><i class="fas fa-tools"></i> Habilidades</a></li>
       <li><a href="#" class="nav-link hover:text-blue-400" data-section="formacao"><i class="fas fa-graduation-cap"></i> Formação</a></li>
@@ -270,6 +275,7 @@
         const targetSection = document.getElementById(sectionId);
         if (targetSection) {
           targetSection.classList.add('active');
+          window.scrollTo({ top: targetSection.offsetTop - 80, behavior: 'smooth' }); // Ajusta o scroll para alinhar com a navbar
         }
       });
     });
@@ -279,6 +285,7 @@
       const defaultSection = document.getElementById('sobre');
       if (defaultSection) {
         defaultSection.classList.add('active');
+        window.scrollTo({ top: defaultSection.offsetTop - 80, behavior: 'smooth' });
       }
     });
   </script>
