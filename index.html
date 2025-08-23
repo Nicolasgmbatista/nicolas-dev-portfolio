@@ -19,7 +19,7 @@
       top: 20px;
       left: 20px;
       height: auto;
-      width: 250px; /* Increased width to accommodate content */
+      width: 250px;
       overflow-y: visible;
       border-radius: 15px;
       padding: 1rem;
@@ -27,24 +27,24 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
     .content {
-      margin-left: 290px; /* Adjusted to match new sidebar width + margin */
-      padding-top: 80px; /* Space for the navbar */
+      margin-left: 280px; /* Adjusted to match sidebar width + padding + border */
+      padding-top: 100px; /* Increased to ensure proper alignment with navbar */
       min-height: 100vh;
     }
     .navbar {
       background-color: #2d3748;
       position: fixed;
       top: 20px;
-      left: 290px; /* Aligned with new sidebar width */
-      right: 20px; /* Matches the content margin for proportionality */
-      padding: 1rem; /* Restored original padding */
+      left: 280px; /* Aligned with sidebar width + padding + border */
+      right: 20px;
+      padding: 1rem;
       border: 1px solid #4a5568;
       z-index: 10;
       border-radius: 15px;
-      height: 60px; /* Restored original height */
+      height: 60px;
     }
     .navbar ul {
-      flex justify-end space-x-4 items-center h-full; /* Restored original layout */
+      flex justify-end space-x-4 items-center h-full;
       margin: 0;
       padding: 0;
       list-style: none;
@@ -53,7 +53,7 @@
       display: none;
       padding: 2rem;
       animation: fadeIn 0.5s ease-in;
-      margin-top: 80px; /* Aligns content below navbar */
+      margin-top: 0; /* Removed margin to align with navbar */
     }
     .section.active {
       display: block;
