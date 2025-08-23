@@ -61,7 +61,6 @@
     /* Conteúdo */
     .content {
       margin-left: 0;
-      padding-top: 100px; /* espaço para navbar */
       min-height: 100vh;
     }
 
@@ -83,7 +82,7 @@
       border-radius: 1rem;
       padding: 2rem;
       max-width: 900px;
-      margin: 0 auto;
+      margin: 0 auto 2rem auto;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
@@ -120,6 +119,10 @@
       background-color: #4a5568;
     }
 
+    #top-anchor {
+      height: 100px; /* altura da navbar fixa */
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
@@ -139,9 +142,6 @@
         transform: translateX(-50%);
         width: 90%;
         max-width: 100%;
-      }
-      .content {
-        padding-top: 100px; /* mantém alinhamento */
       }
     }
   </style>
@@ -179,6 +179,8 @@
 
   <!-- Main Content -->
   <main class="content">
+    <div id="top-anchor"></div>
+
     <!-- Sobre Section -->
     <section id="sobre" class="section active">
       <div class="card">
@@ -308,7 +310,7 @@
         if (targetSection) {
           targetSection.classList.add('active');
           window.scrollTo({
-            top: targetSection.offsetTop - 100, // mesma conta do padding-top
+            top: targetSection.offsetTop - 100,
             behavior: 'smooth'
           });
         }
@@ -316,16 +318,10 @@
     });
 
     window.addEventListener('load', () => {
-  const defaultSection = document.getElementById('sobre');
-  if (defaultSection) {
-    defaultSection.classList.add('active');
-    window.scrollTo({
-      top: defaultSection.offsetTop - 100,
-      behavior: 'smooth'
+      window.scrollTo(0, 0); // garante que o scroll inicia no topo
+      const defaultSection = document.getElementById('sobre');
+      if (defaultSection) defaultSection.classList.add('active');
     });
-  }
-});
-
   </script>
 </body>
 </html>
