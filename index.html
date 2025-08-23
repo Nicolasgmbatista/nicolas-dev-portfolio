@@ -319,11 +319,13 @@
   const defaultSection = document.getElementById('sobre');
   if (defaultSection) {
     defaultSection.classList.add('active');
-    // Remover o scroll automático
-    // window.scrollTo({ top: defaultSection.offsetTop - 100, behavior: 'smooth' });
-        });
-      }
+    window.scrollTo({
+      top: defaultSection.offsetTop - 100,
+      behavior: 'smooth'
     });
+  }
+});
+
   </script>
 </body>
 </html>
