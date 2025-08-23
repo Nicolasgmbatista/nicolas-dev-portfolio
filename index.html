@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+conforme o meu codigo nao tem tudo: <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -37,7 +37,7 @@
       top: 20px;
       left: 50%;
       transform: translateX(-50%);
-      max-width: 900px;
+      max-width: 900px; /* mesma largura dos cards */
       width: 100%;
       padding: 1rem;
       border: 1px solid #4a5568;
@@ -62,7 +62,6 @@
     .content {
       margin-left: 0;
       min-height: 100vh;
-      padding-top: 20px; /* mantém o topo livre */
     }
 
     /* Sections */
@@ -120,6 +119,10 @@
       background-color: #4a5568;
     }
 
+    #top-anchor {
+      height: 100px; /* altura da navbar fixa */
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
@@ -135,6 +138,8 @@
         transform: translateX(0);
       }
       .navbar {
+        left: 50%;
+        transform: translateX(-50%);
         width: 90%;
         max-width: 100%;
       }
@@ -174,6 +179,8 @@
 
   <!-- Main Content -->
   <main class="content">
+    <div id="top-anchor"></div>
+
     <!-- Sobre Section -->
     <section id="sobre" class="section active">
       <div class="card">
@@ -303,7 +310,7 @@
         if (targetSection) {
           targetSection.classList.add('active');
           window.scrollTo({
-            top: targetSection.offsetTop - 20, // ajuste navbar
+            top: targetSection.offsetTop - 100,
             behavior: 'smooth'
           });
         }
@@ -311,8 +318,7 @@
     });
 
     window.addEventListener('load', () => {
-      window.scrollTo(0, 0); // inicia no topo
-      sections.forEach(section => section.classList.remove('active'));
+      window.scrollTo(0, 0); // garante que o scroll inicia no topo
       const defaultSection = document.getElementById('sobre');
       if (defaultSection) defaultSection.classList.add('active');
     });
