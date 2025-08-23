@@ -30,19 +30,21 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Navbar fixa */
+/* Navbar centralizado */
 .navbar {
   background-color: #2d3748;
   position: fixed;
-  top: 20px; /* mantém margem do topo */
-  left: 280px; /* alinhado com conteúdo */
-  width: calc(100% - 300px); /* largura igual ao conteúdo */
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 900px; /* mesma largura dos cards */
+  width: 100%;
   padding: 1rem;
   border: 1px solid #4a5568;
   z-index: 10;
   border-radius: 15px;
   height: 60px;
-  box-sizing: border-box; /* padding não aumenta largura */
+  box-sizing: border-box;
 }
 
 .navbar ul {
@@ -58,8 +60,8 @@
 
 /* Conteúdo */
 .content {
-  margin-left: 280px; /* mesmo que o left da navbar */
-  padding-top: 80px; /* altura da navbar + margem */
+  margin-left: 0; /* remove espaço do sidebar, navbar central */
+  padding-top: 100px; /* espaço para navbar fixa */
   min-height: 100vh;
 }
 
@@ -134,11 +136,12 @@ th {
   }
   .navbar {
     left: 0;
-    width: 100%; /* navbar ocupa toda a largura no mobile */
+    transform: none; /* remove centralização no mobile */
+    width: 100%;
   }
   .content {
-    margin-left: 0; /* remove espaço do sidebar */
-    padding-top: 80px; /* mantém alinhamento */
+    margin-left: 0;
+    padding-top: 100px; /* mantém espaço para navbar fixa */
   }
 }
   </style>
