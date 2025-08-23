@@ -16,7 +16,7 @@
     .sidebar {
       background-color: #2d3748;
       position: sticky;
-      top: 20px;
+      top: 0; /* Alinhado ao topo */
       left: 20px;
       height: auto;
       width: 250px;
@@ -27,21 +27,22 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
     .content {
-      margin-left: 280px; /* Adjusted to match sidebar width + padding + border */
-      padding-top: 100px; /* Increased to ensure proper alignment with navbar */
+      margin-left: 280px; /* Aligned with sidebar width + padding + border */
+      padding-top: 60px; /* Igual à altura da navbar para alinhamento perfeito */
       min-height: 100vh;
     }
     .navbar {
       background-color: #2d3748;
       position: fixed;
-      top: 20px;
-      left: 280px; /* Aligned with sidebar width + padding + border */
-      right: 20px;
+      top: 0; /* Encostada no topo */
+      left: 280px; /* Aligned with content margin */
+      right: 20px; /* Matches the content's right margin for proportionality */
       padding: 1rem;
       border: 1px solid #4a5568;
       z-index: 10;
       border-radius: 15px;
       height: 60px;
+      max-width: calc(100% - 300px); /* Adjusted to match the content width */
     }
     .navbar ul {
       flex justify-end space-x-4 items-center h-full;
@@ -53,7 +54,7 @@
       display: none;
       padding: 2rem;
       animation: fadeIn 0.5s ease-in;
-      margin-top: 0; /* Removed margin to align with navbar */
+      margin-top: 0; /* Alinhado diretamente com a navbar */
     }
     .section.active {
       display: block;
@@ -108,6 +109,7 @@
       .navbar {
         left: 0;
         right: 0;
+        max-width: 100%;
       }
       .content {
         margin-left: 0;
@@ -282,7 +284,7 @@
         const targetSection = document.getElementById(sectionId);
         if (targetSection) {
           targetSection.classList.add('active');
-          window.scrollTo({ top: targetSection.offsetTop - 80, behavior: 'smooth' });
+          window.scrollTo({ top: targetSection.offsetTop - 60, behavior: 'smooth' }); // Ajustado para a altura da navbar (60px)
         }
       });
     });
@@ -292,7 +294,7 @@
       const defaultSection = document.getElementById('sobre');
       if (defaultSection) {
         defaultSection.classList.add('active');
-        window.scrollTo({ top: defaultSection.offsetTop - 80, behavior: 'smooth' });
+        window.scrollTo({ top: defaultSection.offsetTop - 60, behavior: 'smooth' }); // Ajustado para a altura da navbar
       }
     });
   </script>
