@@ -316,12 +316,11 @@
     });
 
     window.addEventListener('load', () => {
-      const defaultSection = document.getElementById('sobre');
-      if (defaultSection) {
-        defaultSection.classList.add('active');
-        window.scrollTo({
-          top: defaultSection.offsetTop - 100,
-          behavior: 'smooth'
+  const defaultSection = document.getElementById('sobre');
+  if (defaultSection) {
+    defaultSection.classList.add('active');
+    // Remover o scroll automático
+    // window.scrollTo({ top: defaultSection.offsetTop - 100, behavior: 'smooth' });
         });
       }
     });
