@@ -33,14 +33,14 @@
     .navbar {
       background-color: #2d3748;
       position: fixed;
-      top: 0; /* alinhada no topo */
-      left: 280px; /* alinhada com a sidebar */
+      top: 20px; /* mantém a margem do topo */
+      left: 280px;
       right: 20px;
       padding: 1rem;
       border: 1px solid #4a5568;
       z-index: 10;
       border-radius: 15px;
-      height: 60px; /* altura consistente */
+      height: 60px;
       max-width: calc(100% - 300px);
     }
 
@@ -57,8 +57,8 @@
 
     /* Conteúdo */
     .content {
-      margin-left: 280px; /* alinhado com sidebar */
-      padding-top: 60px; /* mesma altura da navbar */
+      margin-left: 280px;
+      padding-top: 80px; /* top da navbar + altura da navbar */
       min-height: 100vh;
     }
 
@@ -138,7 +138,7 @@
       }
       .content {
         margin-left: 0;
-        padding-top: 60px;
+        padding-top: 80px; /* mantém alinhamento no mobile */
       }
     }
   </style>
@@ -291,8 +291,8 @@
     </section>
   </main>
 
+  <!-- JS para navegação -->
   <script>
-    // Navegação entre seções
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('.section');
 
@@ -305,20 +305,19 @@
         if (targetSection) {
           targetSection.classList.add('active');
           window.scrollTo({
-            top: targetSection.offsetTop - 60, // altura da navbar
+            top: targetSection.offsetTop - 80, // mesma conta do padding-top
             behavior: 'smooth'
           });
         }
       });
     });
 
-    // Ativa a primeira seção por padrão
     window.addEventListener('load', () => {
       const defaultSection = document.getElementById('sobre');
       if (defaultSection) {
         defaultSection.classList.add('active');
         window.scrollTo({
-          top: defaultSection.offsetTop - 60,
+          top: defaultSection.offsetTop - 80,
           behavior: 'smooth'
         });
       }
