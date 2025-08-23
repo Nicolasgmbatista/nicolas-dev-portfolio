@@ -292,38 +292,20 @@
   <!-- JS para navegação -->
   <script>
     const navLinks = document.querySelectorAll('.nav-link');
-const sections = document.querySelectorAll('.section');
-const navbar = document.querySelector('.navbar');
-const navbarHeight = navbar.offsetHeight + 20; // 20px de top extra que você usou
+    const sections = document.querySelectorAll('.section');
 
-navLinks.forEach(link => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    const sectionId = link.getAttribute('data-section');
-
-    sections.forEach(section => section.classList.remove('active'));
-    const targetSection = document.getElementById(sectionId);
-    if (targetSection) {
-      targetSection.classList.add('active');
-
-      // Pega a posição relativa da seção e subtrai a altura da navbar + margem
-      const sectionTop = targetSection.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({
-        top: sectionTop - navbarHeight,
-        behavior: 'smooth'
-      });
-    }
-  });
-});
-
-// Garante que inicia no topo
-window.addEventListener('load', () => {
-  window.scrollTo(0, 0);
-  sections.forEach(section => section.classList.remove('active'));
-  const defaultSection = document.getElementById('sobre');
-  if (defaultSection) defaultSection.classList.add('active');
-});
-
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const sectionId = link.getAttribute('data-section');
+        sections.forEach(section => section.classList.remove('active'));
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) {
+          targetSection.classList.add('active');
+          window.scrollTo({
+            top: targetSection.offsetTop - 20, // ajuste navbar
+            behavior: 'smooth'
+          });
         }
       });
     });
