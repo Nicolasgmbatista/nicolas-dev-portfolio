@@ -36,22 +36,18 @@
       position: fixed;
       top: 20px;
       left: 290px; /* Aligned with new sidebar width */
-      right: 20px; /* Added right margin for consistency */
-      padding: 0.5rem 1rem; /* Reduced padding for compactness */
+      right: 20px; /* Matches the content margin for proportionality */
+      padding: 1rem; /* Restored original padding */
       border: 1px solid #4a5568;
       z-index: 10;
       border-radius: 15px;
-      height: 50px; /* Reduced height for compactness */
+      height: 60px; /* Restored original height */
     }
     .navbar ul {
-      display: flex;
-      justify-content: center; /* Centered navigation items */
-      align-items: center;
-      gap: 1.5rem; /* Adjusted spacing between items */
+      flex justify-end space-x-4 items-center h-full; /* Restored original layout */
       margin: 0;
       padding: 0;
       list-style: none;
-      height: 100%;
     }
     .section {
       display: none;
@@ -123,7 +119,7 @@
 <body>
   <!-- Navbar -->
   <nav class="navbar">
-    <ul>
+    <ul class="flex justify-end space-x-4 items-center h-full">
       <li><a href="#" class="nav-link hover:text-blue-400" data-section="sobre"><i class="fas fa-user"></i> Sobre Mim</a></li>
       <li><a href="#" class="nav-link hover:text-blue-400" data-section="habilidades"><i class="fas fa-tools"></i> Habilidades</a></li>
       <li><a href="#" class="nav-link hover:text-blue-400" data-section="formacao"><i class="fas fa-graduation-cap"></i> Formação</a></li>
