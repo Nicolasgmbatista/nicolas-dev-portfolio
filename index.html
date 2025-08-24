@@ -73,8 +73,9 @@
     }
 
     .section.active {
-      display: block;
-    }
+  display: block;
+  padding-top: 20px; /* Pequeno padding extra para evitar sobreposição */
+}
 
     /* Cards e skill bars */
     .card {
@@ -317,13 +318,16 @@
       });
     });
 
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'instant' }); // Garante que começa no topo
-        const defaultSection = document.getElementById('sobre');
-        if (defaultSection) defaultSection.classList.add('active');
-      }, 100); // Pequeno atraso para garantir o DOM
-    });
+   window.addEventListener('load', () => {
+  setTimeout(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    const defaultSection = document.getElementById('sobre');
+    if (defaultSection) {
+      defaultSection.classList.add('active');
+      window.scrollTo({ top: defaultSection.offsetTop - 100, behavior: 'instant' });
+    }
+  }, 100);
+});
   </script>
 </body>
 </html>
