@@ -8,16 +8,16 @@
   <script src="https://kit.fontawesome.com/9710e75dd5.js" crossorigin="anonymous"></script>
   <style>
     body {
-      background-color: #1a202c;
+      background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
       margin: 0;
-      font-family: 'Arial', sans-serif;
+      font-family: 'Arial', 'Helvetica Neue', sans-serif;
       color: #e2e8f0;
       box-sizing: border-box;
     }
 
     /* Sidebar */
     .sidebar {
-      background-color: #2d3748;
+      background: linear-gradient(145deg, #2d3748, #4a5568);
       position: sticky;
       top: 20px;
       left: 20px;
@@ -25,32 +25,38 @@
       width: 250px;
       overflow-y: visible;
       border-radius: 15px;
-      padding: 1rem;
-      border: 1px solid #4a5568;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+      border: 1px solid #718096;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar img {
+      border: 3px solid #63b3ed;
     }
 
     /* Navbar fixa centralizada */
     .navbar {
-      background-color: #2d3748;
+      background: linear-gradient(90deg, #2d3748, #4a5568);
       position: fixed;
       top: 20px;
       left: 50%;
       transform: translateX(-50%);
-      max-width: 900px; /* mesma largura dos cards */
+      max-width: 900px;
       width: 100%;
-      padding: 1rem;
-      border: 1px solid #4a5568;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid #718096;
       z-index: 10;
       border-radius: 15px;
       height: 60px;
       box-sizing: border-box;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
     .navbar ul {
       display: flex;
       justify-content: flex-end;
-      gap: 1rem;
+      gap: 1.5rem;
       align-items: center;
       height: 100%;
       margin: 0;
@@ -58,75 +64,116 @@
       list-style: none;
     }
 
+    .navbar a {
+      color: #e2e8f0;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .navbar a:hover {
+      color: #63b3ed;
+    }
+
     /* Conteúdo */
     .content {
-      margin-top: 120px; /* Ajustado para 120px */
+      margin-top: 120px;
       min-height: 100vh;
+      padding: 0 2rem;
     }
 
     /* Sections */
     .section {
       display: none;
-      padding: 2rem;
+      padding: 2.5rem;
       animation: fadeIn 0.5s ease-in;
       margin-top: 0;
+      background: rgba(45, 55, 72, 0.9);
+      border-radius: 15px;
+      border: 1px solid #718096;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
     }
 
     .section.active {
-  display: block;
-  padding-top: 20px; /* Pequeno padding extra para evitar sobreposição */
-}
+      display: block;
+    }
 
     /* Cards e skill bars */
     .card {
-      background-color: #2d3748;
-      border-radius: 1rem;
-      padding: 2rem;
+      background: linear-gradient(135deg, #2d3748, #3c4a5e);
+      border-radius: 1.5rem;
+      padding: 2.5rem;
       max-width: 900px;
-      margin: 0 auto 2rem auto;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin: 0 auto 2.5rem auto;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .card h2 {
+      color: #63b3ed;
+      border-bottom: 2px solid #63b3ed;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
     }
 
     .skill-level {
       width: 100%;
-      height: 10px;
+      height: 12px;
       background-color: #4a5568;
-      border-radius: 5px;
-      margin: 0.5rem 0;
+      border-radius: 10px;
+      margin: 0.75rem 0;
+      overflow: hidden;
     }
 
     .skill-level div {
       height: 100%;
-      background-color: #63b3ed;
-      border-radius: 5px;
+      background: linear-gradient(90deg, #63b3ed, #6b48ff);
+      border-radius: 10px;
+      transition: width 0.3s ease;
     }
 
     table {
       width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-top: 1.5rem;
+      background: #2d3748;
+      border-radius: 10px;
+      overflow: hidden;
     }
 
     table, th, td {
-      border: 1px solid #4a5568;
+      border: 1px solid #718096;
     }
 
     th, td {
-      padding: 0.75rem;
+      padding: 1rem;
       text-align: center;
+      background: #3c4a5e;
     }
 
     th {
-      background-color: #4a5568;
+      background: #4a5568;
+      color: #e2e8f0;
+      font-weight: 600;
     }
 
     #top-anchor {
-      height: 100px; /* altura da navbar fixa */
+      height: 100px;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Botões e links */
+    a.social-link {
+      color: #e2e8f0;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    a.social-link:hover {
+      color: #63b3ed;
+      transform: scale(1.1);
     }
 
     /* Responsivo */
@@ -143,6 +190,13 @@
         transform: translateX(-50%);
         width: 90%;
         max-width: 100%;
+        padding: 0.5rem 1rem;
+      }
+      .card {
+        padding: 1.5rem;
+      }
+      .section {
+        padding: 1.5rem;
       }
     }
   </style>
@@ -165,16 +219,16 @@
       <img src="img/perfil.jpg" alt="Foto de Perfil" class="rounded-full mx-auto mb-2 w-24 h-24 object-cover">
       <h2 class="text-xl font-bold text-white">Nicolas Batista</h2>
     </div>
-    <div class="mb-6 text-sm text-gray-400">
+    <div class="mb-6 text-sm text-gray-300">
       <p>E-mail: nicolasgmbatista15@gmail.com</p>
       <p>Telefone: (49) 9 8842-9369</p>
       <p>Aniversário: 27/02/2007</p>
       <p>Localização: Videira, Brasil</p>
     </div>
-    <div class="mt-auto text-gray-400 text-center">
-      <a href="https://instagram.com/nicolas_batista.15" target="_blank" class="hover:text-blue-400 mr-2"><i class="fab fa-instagram fa-2x"></i></a>
-      <a href="https://github.com/Nicolasgmbatista" target="_blank" class="hover:text-blue-400 mr-2"><i class="fab fa-github fa-2x"></i></a>
-      <a href="https://linkedin.com/in/nicolas-guilherme-batista-malysz-577561353" target="_blank" class="hover:text-blue-400"><i class="fab fa-linkedin fa-2x"></i></a>
+    <div class="mt-auto text-gray-300 text-center">
+      <a href="https://instagram.com/nicolas_batista.15" target="_blank" class="social-link mr-2"><i class="fab fa-instagram fa-2x"></i></a>
+      <a href="https://github.com/Nicolasgmbatista" target="_blank" class="social-link mr-2"><i class="fab fa-github fa-2x"></i></a>
+      <a href="https://linkedin.com/in/nicolas-guilherme-batista-malysz-577561353" target="_blank" class="social-link"><i class="fab fa-linkedin fa-2x"></i></a>
     </div>
   </aside>
 
@@ -187,8 +241,8 @@
       <div class="card">
         <h2 class="text-3xl font-bold mb-6">Sobre Mim</h2>
         <div class="flex items-center gap-6 mb-6">
-          <img src="img/perfil.jpg" alt="Foto Profissional" class="rounded-full w-24 h-24 object-cover">
-          <p class="text-gray-300">
+          <img src="img/perfil.jpg" alt="Foto Profissional" class="rounded-full w-24 h-24 object-cover border-2 border-blue-400">
+          <p class="text-gray-200">
             Olá! Meu nome é Nicolas Batista, tenho 18 anos e sou estudante de Ciência da Computação desde o início de 2025. Comecei recentemente na programação, explorando C e C#, e tenho interesse em expandir meus estudos para Java, C++ e Python. Além disso, estudo algoritmos, circuitos digitais e fundamentos da computação, buscando sempre desenvolver soluções práticas e eficientes.
           </p>
         </div>
@@ -199,10 +253,10 @@
     <section id="habilidades" class="section">
       <div class="card">
         <h2 class="text-3xl font-bold mb-6">Habilidades</h2>
-        <p class="mb-4 text-gray-300">Estas são algumas das linguagens e ferramentas que já estudo ou tenho interesse:</p>
+        <p class="mb-4 text-gray-200">Estas são algumas das linguagens e ferramentas que já estudo ou tenho interesse:</p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h3 class="text-xl font-bold mb-2">Linguagens</h3>
+            <h3 class="text-xl font-bold mb-2 text-blue-400">Linguagens</h3>
             <p>C#</p>
             <div class="skill-level"><div style="width: 50%;"></div></div>
             <p>C</p>
@@ -215,7 +269,7 @@
             <div class="skill-level"><div style="width: 20%;"></div></div>
           </div>
           <div>
-            <h3 class="text-xl font-bold mb-2">Ferramentas & Conceitos</h3>
+            <h3 class="text-xl font-bold mb-2 text-blue-400">Ferramentas & Conceitos</h3>
             <p>Git</p>
             <div class="skill-level"><div style="width: 40%;"></div></div>
             <p>Algoritmos & Estrutura de Dados</p>
@@ -233,8 +287,8 @@
     <section id="formacao" class="section">
       <div class="card">
         <h2 class="text-3xl font-bold mb-6">Formação</h2>
-        <p class="mb-4 text-gray-300">Sou estudante de Ciência da Computação desde 2025. Aqui estão as disciplinas já cursadas e as atuais:</p>
-        <h3 class="text-xl font-semibold mt-4 mb-2">1º Semestre (2025/1)</h3>
+        <p class="mb-4 text-gray-200">Sou estudante de Ciência da Computação desde 2025. Aqui estão as disciplinas já cursadas e as atuais:</p>
+        <h3 class="text-xl font-semibold mt-4 mb-2 text-blue-400">1º Semestre (2025/1)</h3>
         <table>
           <thead>
             <tr>
@@ -253,7 +307,7 @@
             <tr><td>Princípios e Aplicações da Computação</td><td>36h</td><td>9.3</td><td>Aprovado</td></tr>
           </tbody>
         </table>
-        <h3 class="text-xl font-semibold mt-6 mb-2">2º Semestre (2025/2 - Cursando)</h3>
+        <h3 class="text-xl font-semibold mt-6 mb-2 text-blue-400">2º Semestre (2025/2 - Cursando)</h3>
         <table>
           <thead>
             <tr>
@@ -278,7 +332,7 @@
     <section id="projetos" class="section">
       <div class="card">
         <h2 class="text-3xl font-bold mb-6">Projetos</h2>
-        <p class="text-gray-300">Em breve irei adicionar aqui meus projetos pessoais e acadêmicos.</p>
+        <p class="text-gray-200">Em breve irei adicionar aqui meus projetos pessoais e acadêmicos.</p>
       </div>
     </section>
 
@@ -286,12 +340,12 @@
     <section id="contato" class="section">
       <div class="card">
         <h2 class="text-3xl font-bold mb-6">Contato</h2>
-        <p class="text-gray-300 mb-2">E-mail: nicolasgmbatista15@gmail.com</p>
-        <p class="text-gray-300 mb-2">Telefone: (49) 9 8842-9369</p>
-        <p class="text-gray-300 mb-2">Localização: Videira, Brasil</p>
+        <p class="text-gray-200 mb-2">E-mail: nicolasgmbatista15@gmail.com</p>
+        <p class="text-gray-200 mb-2">Telefone: (49) 9 8842-9369</p>
+        <p class="text-gray-200 mb-2">Localização: Videira, Brasil</p>
         <div class="mt-4">
-          <a href="https://github.com/Nicolasgmbatista" target="_blank" class="text-blue-400 hover:underline mr-4"><i class="fab fa-github fa-2x"></i></a>
-          <a href="https://linkedin.com/in/nicolas-guilherme-batista-malysz-577561353" target="_blank" class="text-blue-400 hover:underline"><i class="fab fa-linkedin fa-2x"></i></a>
+          <a href="https://github.com/Nicolasgmbatista" target="_blank" class="social-link mr-4"><i class="fab fa-github fa-2x"></i></a>
+          <a href="https://linkedin.com/in/nicolas-guilherme-batista-malysz-577561353" target="_blank" class="social-link"><i class="fab fa-linkedin fa-2x"></i></a>
         </div>
       </div>
     </section>
@@ -311,23 +365,23 @@
         if (targetSection) {
           targetSection.classList.add('active');
           window.scrollTo({
-            top: targetSection.offsetTop - 100, // Subtrai a altura da navbar
+            top: targetSection.offsetTop - 100,
             behavior: 'smooth'
           });
         }
       });
     });
 
-   window.addEventListener('load', () => {
-  setTimeout(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    const defaultSection = document.getElementById('sobre');
-    if (defaultSection) {
-      defaultSection.classList.add('active');
-      window.scrollTo({ top: defaultSection.offsetTop - 100, behavior: 'instant' });
-    }
-  }, 100);
-});
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        const defaultSection = document.getElementById('sobre');
+        if (defaultSection) {
+          defaultSection.classList.add('active');
+          window.scrollTo({ top: defaultSection.offsetTop - 100, behavior: 'instant' });
+        }
+      }, 100);
+    });
   </script>
 </body>
 </html>
