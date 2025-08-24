@@ -60,7 +60,7 @@
 
     /* Conteúdo */
     .content {
-      margin-left: 0;
+      margin-top: 100px; /* Adiciona espaço para a navbar fixa */
       min-height: 100vh;
     }
 
@@ -310,7 +310,7 @@
         if (targetSection) {
           targetSection.classList.add('active');
           window.scrollTo({
-            top: targetSection.offsetTop - 100,
+            top: targetSection.offsetTop - 100, // Subtrai a altura da navbar
             behavior: 'smooth'
           });
         }
@@ -318,12 +318,12 @@
     });
 
     window.addEventListener('load', () => {
-  setTimeout(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    const defaultSection = document.getElementById('sobre');
-    if (defaultSection) defaultSection.classList.add('active');
-  }, 100); // Pequeno atraso para garantir que o DOM esteja pronto
-});
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'instant' }); // Garante que começa no topo
+        const defaultSection = document.getElementById('sobre');
+        if (defaultSection) defaultSection.classList.add('active');
+      }, 100); // Pequeno atraso para garantir o DOM
+    });
   </script>
 </body>
 </html>
