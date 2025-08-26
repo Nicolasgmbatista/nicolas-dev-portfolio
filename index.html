@@ -35,7 +35,7 @@
       background-color: #2d3748;
       position: fixed;
       top: 20px;
-      left: calc(50% + 125px); /* Ajuste para centralizar considerando a sidebar */
+      left: calc(50% + 150px); /* Ajuste para centralizar considerando a sidebar + margem */
       transform: translateX(-50%);
       max-width: 900px;
       width: 100%;
@@ -45,7 +45,7 @@
       border-radius: 15px;
       height: 60px;
       box-sizing: border-box;
-      margin-left: 270px; /* Espaço para a sidebar (250px + 20px de margem) */
+      margin-left: 300px; /* Espaço para a sidebar (250px + 50px de margem) */
     }
 
     .navbar ul {
@@ -64,7 +64,7 @@
       margin-top: 60px; /* Ajustado para a altura do nav bar */
       min-height: 100vh; /* Altura mínima da tela */
       overflow-y: auto; /* Habilita scroll vertical */
-      padding-left: 270px; /* Espaço para a sidebar */
+      padding-left: 300px; /* Espaço para a sidebar + margem */
       max-width: 900px; /* Alinha com a largura máxima do nav bar */
       margin-left: auto;
       margin-right: auto; /* Centraliza o conteúdo */
@@ -84,7 +84,7 @@
 
     .section.active {
       display: block;
-      padding-top: 20px; /* Pequeno padding extra para evitar sobreposição */
+      padding-top: 0; /* Remove padding extra para alinhamento imediato */
     }
 
     /* Cards e skill bars */
@@ -92,8 +92,7 @@
       background-color: #2d3748;
       border-radius: 1rem;
       padding: 2rem;
-      max-width: 900px;
-      margin: 0 auto 2rem auto;
+      width: 100%; /* Garante a mesma largura do nav bar */
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
@@ -157,6 +156,7 @@
       }
       .content {
         padding-left: 0; /* Remove padding da sidebar em telas pequenas */
+        margin-top: 80px; /* Ajuste para telas menores */
       }
     }
   </style>
