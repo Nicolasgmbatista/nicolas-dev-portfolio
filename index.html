@@ -61,7 +61,7 @@
 
     /* Conteúdo */
     .content {
-      margin-top: 100px; /* Ajuste para a altura do nav bar */
+      margin-top: 80px; /* Reduzido para minimizar espaço vazio, ajustado à altura do nav bar */
       min-height: 100vh; /* Altura mínima da tela */
       overflow-y: auto; /* Habilita scroll vertical */
       padding-left: 270px; /* Espaço para a sidebar */
@@ -71,7 +71,7 @@
       position: relative; /* Para controle de posicionamento */
       top: 0; /* Garante que o topo comece no ponto correto */
       scroll-behavior: smooth;
-      scroll-padding-top: 100px; /* Espaço reservado para o nav bar */
+      scroll-padding-top: 80px; /* Ajustado ao margin-top */
     }
 
     /* Sections */
@@ -325,8 +325,9 @@
         if (targetSection) {
           targetSection.classList.add('active');
           const navHeight = document.querySelector('.navbar').offsetHeight;
+          const headerOffset = 20; // Ajuste para o top do nav bar (20px do CSS original)
           window.scrollTo({
-            top: targetSection.offsetTop - navHeight, // Subtrai a altura da navbar
+            top: targetSection.offsetTop - navHeight - headerOffset, // Subtrai a altura da navbar e offset
             behavior: 'smooth'
           });
         }
@@ -339,9 +340,10 @@
         const defaultSection = document.getElementById('sobre');
         if (defaultSection) {
           defaultSection.classList.add('active');
-          const navHeight = document.querySelector('.navbar').offsetHeight; // Altura do nav bar
+          const navHeight = document.querySelector('.navbar').offsetHeight; // Altura dinâmica do nav bar
+          const headerOffset = 20; // Ajuste para o top do nav bar (20px do CSS original)
           window.scrollTo({
-            top: defaultSection.offsetTop - navHeight, // Ajusta para logo abaixo do nav bar
+            top: defaultSection.offsetTop - navHeight - headerOffset, // Ajusta para logo abaixo do nav bar
             behavior: 'instant'
           });
         }
