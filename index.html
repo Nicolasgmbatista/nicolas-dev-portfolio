@@ -7,6 +7,13 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://kit.fontawesome.com/9710e75dd5.js" crossorigin="anonymous"></script>
   <style>
+    :root{
+      --sidebar-width: 250px;
+      --gap: 20px;
+      --right-margin: 20px;
+      --content-max-width: 900px; /* largura usada pelos cards */
+    }
+
     body {
       background-color: #1a202c;
       margin: 0;
@@ -14,11 +21,6 @@
       color: #e2e8f0;
       box-sizing: border-box;
       display: flex;
-    }
-
-    :root {
-      --sidebar-width: 250px;
-      --gap: 20px;
     }
 
     /* Sidebar */
@@ -31,23 +33,31 @@
       border-radius: 15px;
       padding: 1rem;
       border: 1px solid #4a5568;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       height: calc(100vh - 40px);
       overflow-y: auto;
     }
 
-    /* Navbar fixa */
+    /* Navbar alinhada ao mesmo contêiner dos cards:
+       cálculo: left = sidebar + 2*gaps + (available-width - content-max-width)/2
+       width = content-max-width
+    */
     .navbar {
       background-color: #2d3748;
       position: fixed;
       top: 20px;
-      left: calc(var(--sidebar-width) + var(--gap) * 2);
-      right: 20px;
+      left: calc(
+        var(--sidebar-width)
+        + (var(--gap) * 2)
+        + ( (100% - var(--sidebar-width) - (var(--gap) * 2) - var(--right-margin) - var(--content-max-width)) / 2 )
+      );
+      width: var(--content-max-width);
       padding: 1rem;
       border: 1px solid #4a5568;
       z-index: 10;
       border-radius: 15px;
       height: 60px;
+      box-sizing: border-box;
       display: flex;
       justify-content: flex-end;
       align-items: center;
@@ -61,97 +71,71 @@
       padding: 0;
     }
 
-    /* Conteúdo */
+    .navbar a { color: #e2e8f0; text-decoration: none; }
+    .navbar a:hover { color: #63b3ed; }
+
+    /* Conteúdo: começa depois da sidebar + gaps */
     .content {
       margin-top: 120px;
-      margin-left: calc(var(--sidebar-width) + var(--gap) * 2);
-      margin-right: 20px;
+      margin-left: calc(var(--sidebar-width) + (var(--gap) * 2));
+      margin-right: var(--right-margin);
       min-height: 100vh;
       flex: 1;
     }
 
-    /* Sections */
-    .section {
-      display: none;
-      padding: 2rem;
-      animation: fadeIn 0.5s ease-in;
-      margin-top: 0;
-    }
+    /* Cards/sections */
+    .section { display: none; padding: 2rem; animation: fadeIn 0.5s ease-in; margin-top: 0; }
+    .section.active { display: block; }
 
-    .section.active {
-      display: block;
-    }
-
-    /* Cards e skill bars */
     .card {
       background-color: #2d3748;
       border-radius: 1rem;
       padding: 2rem;
-      max-width: 900px;
-      margin: 0 auto 2rem auto;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-width: var(--content-max-width);
+      margin: 0 auto 2rem auto; /* centraliza o card dentro do espaço de conteúdo */
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
 
-    .skill-level {
-      width: 100%;
-      height: 10px;
-      background-color: #4a5568;
-      border-radius: 5px;
-      margin: 0.5rem 0;
-    }
+    .skill-level { width: 100%; height: 10px; background-color: #4a5568; border-radius: 5px; margin: 0.5rem 0; }
+    .skill-level div { height: 100%; background-color: #63b3ed; border-radius: 5px; }
 
-    .skill-level div {
-      height: 100%;
-      background-color: #63b3ed;
-      border-radius: 5px;
-    }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    table, th, td { border: 1px solid #4a5568; }
+    th, td { padding: 0.75rem; text-align: center; }
+    th { background-color: #4a5568; }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-    }
+    #top-anchor { height: 100px; }
 
-    table, th, td {
-      border: 1px solid #4a5568;
-    }
+    @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
 
-    th, td {
-      padding: 0.75rem;
-      text-align: center;
-    }
-
-    th {
-      background-color: #4a5568;
-    }
-
-    #top-anchor {
-      height: 100px;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    /* Responsivo */
-    @media (max-width: 1024px) {
-      .sidebar {
-        position: relative;
-        width: 100%;
-        height: auto;
-        margin: 20px;
-      }
-
+    /* RESPONSIVO: quando a viewport for menor que o espaço necessário para centralizar o content-max-width,
+       deixamos a navbar fluida (left/right) para caber corretamente */
+    @media (max-width: 1210px) {
       .navbar {
-        left: 20px;
-        right: 20px;
+        left: calc(var(--sidebar-width) + (var(--gap) * 2));
+        right: var(--right-margin);
+        width: auto;
       }
 
       .content {
-        margin-left: 20px;
-        margin-right: 20px;
+        margin-left: calc(var(--sidebar-width) + (var(--gap) * 2));
+        margin-right: var(--right-margin);
       }
+    }
+
+    @media (max-width: 1024px) {
+      /* mobile: sidebar vira topo relativo */
+      .sidebar {
+        position: relative;
+        width: calc(100% - 40px);
+        left: 20px;
+        top: 20px;
+        height: auto;
+        margin-bottom: 10px;
+      }
+      .navbar { left: 20px; right: 20px; width: auto; }
+      .content { margin-left: 20px; margin-right: 20px; margin-top: 20px; }
+      .card { margin-top: 10px; }
     }
   </style>
 </head>
@@ -190,19 +174,20 @@
   <main class="content">
     <div id="top-anchor"></div>
 
-    <!-- Seções -->
+    <!-- Sobre Section -->
     <section id="sobre" class="section active">
       <div class="card">
         <h2 class="text-3xl font-bold mb-6">Sobre Mim</h2>
         <div class="flex items-center gap-6 mb-6">
           <img src="img/perfil.jpg" alt="Foto Profissional" class="rounded-full w-24 h-24 object-cover">
           <p class="text-gray-300">
-            Olá! Meu nome é Nicolas Batista, tenho 18 anos e sou estudante de Ciência da Computação desde o início de 2025. Comecei recentemente na programação, explorando C e C#, e tenho interesse em expandir meus estudos para Java, C++ e Python.
+            Olá! Meu nome é Nicolas Batista, tenho 18 anos e sou estudante de Ciência da Computação desde o início de 2025. Comecei recentemente na programação, explorando C e C#, e tenho interesse em expandir meus estudos para Java, C++ e Python. Além disso, estudo algoritmos, circuitos digitais e fundamentos da computação, buscando sempre desenvolver soluções práticas e eficientes.
           </p>
         </div>
       </div>
     </section>
 
+    <!-- Habilidades Section -->
     <section id="habilidades" class="section">
       <div class="card">
         <h2 class="text-3xl font-bold mb-6">Habilidades</h2>
@@ -210,41 +195,91 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <h3 class="text-xl font-bold mb-2">Linguagens</h3>
-            <p>C#</p><div class="skill-level"><div style="width: 50%;"></div></div>
-            <p>C</p><div class="skill-level"><div style="width: 40%;"></div></div>
-            <p>Python</p><div class="skill-level"><div style="width: 20%;"></div></div>
+            <p>C#</p>
+            <div class="skill-level"><div style="width: 50%;"></div></div>
+            <p>C</p>
+            <div class="skill-level"><div style="width: 40%;"></div></div>
+            <p>Python</p>
+            <div class="skill-level"><div style="width: 20%;"></div></div>
+            <p>Java</p>
+            <div class="skill-level"><div style="width: 20%;"></div></div>
+            <p>C++</p>
+            <div class="skill-level"><div style="width: 20%;"></div></div>
           </div>
           <div>
-            <h3 class="text-xl font-bold mb-2">Ferramentas</h3>
-            <p>Git</p><div class="skill-level"><div style="width: 40%;"></div></div>
-            <p>Lógica de Programação</p><div class="skill-level"><div style="width: 70%;"></div></div>
+            <h3 class="text-xl font-bold mb-2">Ferramentas & Conceitos</h3>
+            <p>Git</p>
+            <div class="skill-level"><div style="width: 40%;"></div></div>
+            <p>Algoritmos & Estrutura de Dados</p>
+            <div class="skill-level"><div style="width: 60%;"></div></div>
+            <p>Lógica de Programação</p>
+            <div class="skill-level"><div style="width: 70%;"></div></div>
+            <p>Circuitos Digitais</p>
+            <div class="skill-level"><div style="width: 50%;"></div></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Formação -->
+    <!-- Formação Section -->
     <section id="formacao" class="section">
       <div class="card">
         <h2 class="text-3xl font-bold mb-6">Formação</h2>
-        <p class="mb-4 text-gray-300">Sou estudante de Ciência da Computação desde 2025.</p>
+        <p class="mb-4 text-gray-300">Sou estudante de Ciência da Computação desde 2025. Aqui estão as disciplinas já cursadas e as atuais:</p>
         <h3 class="text-xl font-semibold mt-4 mb-2">1º Semestre (2025/1)</h3>
         <table>
-          <thead><tr><th>Disciplina</th><th>Carga Horária</th><th>Nota</th><th>Status</th></tr></thead>
-          <tbody><tr><td>Algoritmos</td><td>72h</td><td>8.2</td><td>Aprovado</td></tr></tbody>
+          <thead>
+            <tr><th>Disciplina</th><th>Carga Horária</th><th>Nota</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Algoritmos e Lógica de Programação</td><td>72h</td><td>8.2</td><td>Aprovado</td></tr>
+            <tr><td>Prática Profissional e Inserção Comunitária I</td><td>36h</td><td>8.5</td><td>Aprovado</td></tr>
+            <tr><td>Circuitos Digitais</td><td>72h</td><td>8.3</td><td>Aprovado</td></tr>
+            <tr><td>Matemática e Tecnologia I</td><td>72h</td><td>8.2</td><td>Aprovado</td></tr>
+            <tr><td>Linguagem e Método Científico</td><td>72h</td><td>9.2</td><td>Aprovado</td></tr>
+            <tr><td>Princípios e Aplicações da Computação</td><td>36h</td><td>9.3</td><td>Aprovado</td></tr>
+          </tbody>
+        </table>
+
+        <h3 class="text-xl font-semibold mt-6 mb-2">2º Semestre (2025/2 - Cursando)</h3>
+        <table>
+          <thead><tr><th>Disciplina</th><th>Carga Horária</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Estrutura de Dados</td><td>72h</td><td>Cursando</td></tr>
+            <tr><td>Prática Profissional e Inserção Comunitária II</td><td>36h</td><td>Cursando</td></tr>
+            <tr><td>Arquitetura de Computadores</td><td>72h</td><td>Cursando</td></tr>
+            <tr><td>Matemática e Tecnologia II</td><td>72h</td><td>Cursando</td></tr>
+            <tr><td>Ética, Cultura e Contemporaneidade</td><td>72h</td><td>Cursando</td></tr>
+            <tr><td>Lógica e Matemática Discreta</td><td>72h</td><td>Cursando</td></tr>
+          </tbody>
         </table>
       </div>
     </section>
 
+    <!-- Projetos Section -->
     <section id="projetos" class="section">
-      <div class="card"><h2 class="text-3xl font-bold mb-6">Projetos</h2><p>Em breve...</p></div>
+      <div class="card">
+        <h2 class="text-3xl font-bold mb-6">Projetos</h2>
+        <p class="text-gray-300">Em breve irei adicionar aqui meus projetos pessoais e acadêmicos.</p>
+      </div>
     </section>
 
+    <!-- Contato Section -->
     <section id="contato" class="section">
-      <div class="card"><h2 class="text-3xl font-bold mb-6">Contato</h2><p>Email: nicolasgmbatista15@gmail.com</p></div>
+      <div class="card">
+        <h2 class="text-3xl font-bold mb-6">Contato</h2>
+        <p class="text-gray-300 mb-2">E-mail: nicolasgmbatista15@gmail.com</p>
+        <p class="text-gray-300 mb-2">Telefone: (49) 9 8842-9369</p>
+        <p class="text-gray-300 mb-2">Localização: Videira, Brasil</p>
+        <div class="mt-4">
+          <a href="https://github.com/Nicolasgmbatista" target="_blank" class="text-blue-400 hover:underline mr-4"><i class="fab fa-github fa-2x"></i></a>
+          <a href="https://linkedin.com/in/nicolas-guilherme-batista-malysz-577561353" target="_blank" class="text-blue-400 hover:underline"><i class="fab fa-linkedin fa-2x"></i></a>
+        </div>
+      </div>
     </section>
   </main>
 
+  <!-- JS para navegação -->
   <script>
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('.section');
