@@ -35,16 +35,17 @@
       background-color: #2d3748;
       position: fixed;
       top: 20px;
-      left: 50%;
+      left: calc(50% + 150px); /* Ajuste para alinhar com a sidebar */
       transform: translateX(-50%);
       max-width: 900px;
-      width: 100%;
+      width: calc(100% - 300px); /* Largura proporcional, evitando encostar na sidebar */
       padding: 1rem;
       border: 1px solid #4a5568;
       z-index: 10;
       border-radius: 15px;
       height: 60px;
       box-sizing: border-box;
+      margin-left: 300px; /* Espaçamento da sidebar */
     }
 
     .navbar ul {
@@ -60,8 +61,10 @@
 
     /* Conteúdo */
     .content {
-      margin-top: 120px;
+      margin-top: 100px; /* Ajuste para alinhar com a navbar */
       min-height: 100vh;
+      padding: 0 2rem;
+      margin-left: 300px; /* Espaçamento da sidebar */
     }
 
     /* Sections */
@@ -142,6 +145,10 @@
         transform: translateX(-50%);
         width: 90%;
         max-width: 100%;
+        margin-left: 0;
+      }
+      .content {
+        margin-left: 0;
       }
     }
   </style>
