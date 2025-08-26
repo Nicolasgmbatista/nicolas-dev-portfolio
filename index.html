@@ -35,9 +35,9 @@
       background-color: #2d3748;
       position: fixed;
       top: 20px;
-      left: 50%;
+      left: calc(50% + 135px); /* Centraliza considerando a sidebar (250px / 2) */
       transform: translateX(-50%);
-      max-width: 900px; /* mesma largura dos cards */
+      max-width: 900px;
       width: 100%;
       padding: 1rem;
       border: 1px solid #4a5568;
@@ -45,6 +45,7 @@
       border-radius: 15px;
       height: 60px;
       box-sizing: border-box;
+      margin-left: 270px; /* Espaçamento da sidebar */
     }
 
     .navbar ul {
@@ -60,8 +61,10 @@
 
     /* Conteúdo */
     .content {
-      margin-top: 120px; /* Ajustado para 120px */
-      min-height: 100vh;
+      margin-top: 120px; /* Espaço para o nav bar */
+      min-height: 100vh; /* Altura mínima da tela */
+      overflow-y: auto; /* Habilita scroll vertical */
+      padding-left: 270px; /* Espaço para a sidebar */
     }
 
     /* Sections */
@@ -73,9 +76,9 @@
     }
 
     .section.active {
-  display: block;
-  padding-top: 20px; /* Pequeno padding extra para evitar sobreposição */
-}
+      display: block;
+      padding-top: 20px; /* Pequeno padding extra para evitar sobreposição */
+    }
 
     /* Cards e skill bars */
     .card {
@@ -121,7 +124,7 @@
     }
 
     #top-anchor {
-      height: 100px; /* altura da navbar fixa */
+      height: 100px; /* Altura da navbar fixa */
     }
 
     @keyframes fadeIn {
@@ -143,6 +146,10 @@
         transform: translateX(-50%);
         width: 90%;
         max-width: 100%;
+        margin-left: 0; /* Remove margem em telas pequenas */
+      }
+      .content {
+        padding-left: 0; /* Remove padding da sidebar em telas pequenas */
       }
     }
   </style>
@@ -318,16 +325,16 @@
       });
     });
 
-   window.addEventListener('load', () => {
-  setTimeout(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    const defaultSection = document.getElementById('sobre');
-    if (defaultSection) {
-      defaultSection.classList.add('active');
-      window.scrollTo({ top: defaultSection.offsetTop - 100, behavior: 'instant' });
-    }
-  }, 100);
-});
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        const defaultSection = document.getElementById('sobre');
+        if (defaultSection) {
+          defaultSection.classList.add('active');
+          window.scrollTo({ top: defaultSection.offsetTop - 100, behavior: 'instant' });
+        }
+      }, 100);
+    });
   </script>
 </body>
 </html>
