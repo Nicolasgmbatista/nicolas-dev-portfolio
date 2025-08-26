@@ -35,17 +35,16 @@
       background-color: #2d3748;
       position: fixed;
       top: 20px;
-      left: calc(50% + 150px); /* Ajuste para alinhar com a sidebar */
+      left: 50%;
       transform: translateX(-50%);
-      max-width: 900px;
-      width: calc(100% - 300px); /* Largura proporcional, evitando encostar na sidebar */
+      max-width: 900px; /* mesma largura dos cards */
+      width: 100%;
       padding: 1rem;
       border: 1px solid #4a5568;
       z-index: 10;
       border-radius: 15px;
       height: 60px;
       box-sizing: border-box;
-      margin-left: 300px; /* Espaçamento da sidebar */
     }
 
     .navbar ul {
@@ -61,10 +60,8 @@
 
     /* Conteúdo */
     .content {
-      margin-top: 100px; /* Ajuste para alinhar com a navbar */
+      margin-top: 120px; /* Ajustado para 120px */
       min-height: 100vh;
-      padding: 0 2rem;
-      margin-left: 300px; /* Espaçamento da sidebar */
     }
 
     /* Sections */
@@ -123,7 +120,7 @@
     }
 
     #top-anchor {
-      height: 100px;
+      height: 100px; /* altura da navbar fixa */
     }
 
     @keyframes fadeIn {
@@ -145,10 +142,6 @@
         transform: translateX(-50%);
         width: 90%;
         max-width: 100%;
-        margin-left: 0;
-      }
-      .content {
-        margin-left: 0;
       }
     }
   </style>
@@ -317,7 +310,7 @@
         if (targetSection) {
           targetSection.classList.add('active');
           window.scrollTo({
-            top: targetSection.offsetTop - 100,
+            top: targetSection.offsetTop - 100, // Subtrai a altura da navbar
             behavior: 'smooth'
           });
         }
@@ -326,10 +319,10 @@
 
     window.addEventListener('load', () => {
       setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'instant' });
+        window.scrollTo({ top: 0, behavior: 'instant' }); // Garante que começa no topo
         const defaultSection = document.getElementById('sobre');
         if (defaultSection) defaultSection.classList.add('active');
-      }, 100);
+      }, 100); // Pequeno atraso para garantir o DOM
     });
   </script>
 </body>
