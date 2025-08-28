@@ -14,7 +14,7 @@
       --content-max-width: 900px; /* largura usada pelos cards */
     }
 
-    /* 🔹 Scroll suave global */
+    /* 🔹 Scroll suave global (adicionado) */
     html {
       scroll-behavior: smooth;
     }
@@ -170,7 +170,109 @@
 
   <!-- Main Content -->
   <main class="content">
-    <!-- (seções iguais ao seu código, mantidas sem alteração) -->
+    <!-- Sobre Section -->
+    <section id="sobre" class="section active">
+      <div class="card">
+        <h2 class="text-3xl font-bold mb-6">Sobre Mim</h2>
+        <div class="flex items-center gap-6 mb-6">
+          <img src="img/perfil.jpg" alt="Foto Profissional" class="rounded-full w-24 h-24 object-cover">
+          <p class="text-gray-300">
+            Olá! Meu nome é Nicolas Batista, tenho 18 anos e sou estudante de Ciência da Computação desde o início de 2025. Comecei recentemente na programação, explorando C e C#, e tenho interesse em expandir meus estudos para Java, C++ e Python. Além disso, estudo algoritmos, circuitos digitais e fundamentos da computação, buscando sempre desenvolver soluções práticas e eficientes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Habilidades Section -->
+    <section id="habilidades" class="section">
+      <div class="card">
+        <h2 class="text-3xl font-bold mb-6">Habilidades</h2>
+        <p class="mb-4 text-gray-300">Estas são algumas das linguagens e ferramentas que já estudo ou tenho interesse:</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <h3 class="text-xl font-bold mb-2">Linguagens</h3>
+            <p>C#</p>
+            <div class="skill-level"><div style="width: 50%;"></div></div>
+            <p>C</p>
+            <div class="skill-level"><div style="width: 40%;"></div></div>
+            <p>Python</p>
+            <div class="skill-level"><div style="width: 20%;"></div></div>
+            <p>Java</p>
+            <div class="skill-level"><div style="width: 20%;"></div></div>
+            <p>C++</p>
+            <div class="skill-level"><div style="width: 20%;"></div></div>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">Ferramentas & Conceitos</h3>
+            <p>Git</p>
+            <div class="skill-level"><div style="width: 40%;"></div></div>
+            <p>Algoritmos & Estrutura de Dados</p>
+            <div class="skill-level"><div style="width: 60%;"></div></div>
+            <p>Lógica de Programação</p>
+            <div class="skill-level"><div style="width: 70%;"></div></div>
+            <p>Circuitos Digitais</p>
+            <div class="skill-level"><div style="width: 50%;"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formação Section -->
+    <section id="formacao" class="section">
+      <div class="card">
+        <h2 class="text-3xl font-bold mb-6">Formação</h2>
+        <p class="mb-4 text-gray-300">Sou estudante de Ciência da Computação desde 2025. Aqui estão as disciplinas já cursadas e as atuais:</p>
+        <h3 class="text-xl font-semibold mt-4 mb-2">1º Semestre (2025/1)</h3>
+        <table>
+          <thead>
+            <tr><th>Disciplina</th><th>Carga Horária</th><th>Nota</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Algoritmos e Lógica de Programação</td><td>72h</td><td>8.2</td><td>Aprovado</td></tr>
+            <tr><td>Prática Profissional e Inserção Comunitária I</td><td>36h</td><td>8.5</td><td>Aprovado</td></tr>
+            <tr><td>Circuitos Digitais</td><td>72h</td><td>8.3</td><td>Aprovado</td></tr>
+            <tr><td>Matemática e Tecnologia I</td><td>72h</td><td>8.2</td><td>Aprovado</td></tr>
+            <tr><td>Linguagem e Método Científico</td><td>72h</td><td>9.2</td><td>Aprovado</td></tr>
+            <tr><td>Princípios e Aplicações da Computação</td><td>36h</td><td>9.3</td><td>Aprovado</td></tr>
+          </tbody>
+        </table>
+
+        <h3 class="text-xl font-semibold mt-6 mb-2">2º Semestre (2025/2 - Cursando)</h3>
+        <table>
+          <thead><tr><th>Disciplina</th><th>Carga Horária</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Estrutura de Dados</td><td>72h</td><td>Cursando</td></tr>
+            <tr><td>Prática Profissional e Inserção Comunitária II</td><td>36h</td><td>Cursando</td></tr>
+            <tr><td>Arquitetura de Computadores</td><td>72h</td><td>Cursando</td></tr>
+            <tr><td>Matemática e Tecnologia II</td><td>72h</td><td>Cursando</td></tr>
+            <tr><td>Ética, Cultura e Contemporaneidade</td><td>72h</td><td>Cursando</td></tr>
+            <tr><td>Lógica e Matemática Discreta</td><td>72h</td><td>Cursando</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Projetos Section -->
+    <section id="projetos" class="section">
+      <div class="card">
+        <h2 class="text-3xl font-bold mb-6">Projetos</h2>
+        <p class="text-gray-300">Em breve irei adicionar aqui meus projetos pessoais e acadêmicos.</p>
+      </div>
+    </section>
+
+    <!-- Contato Section -->
+    <section id="contato" class="section">
+      <div class="card">
+        <h2 class="text-3xl font-bold mb-6">Contato</h2>
+        <p class="text-gray-300 mb-2">E-mail: nicolasgmbatista15@gmail.com</p>
+        <p class="text-gray-300 mb-2">Telefone: (49) 9 8842-9369</p>
+        <p class="text-gray-300 mb-2">Localização: Videira, Brasil</p>
+        <div class="mt-4">
+          <a href="https://github.com/Nicolasgmbatista" target="_blank" class="text-blue-400 hover:underline mr-4"><i class="fab fa-github fa-2x"></i></a>
+          <a href="https://linkedin.com/in/nicolas-guilherme-batista-malysz-577561353" target="_blank" class="text-blue-400 hover:underline"><i class="fab fa-linkedin fa-2x"></i></a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- JS para navegação -->
@@ -195,7 +297,7 @@
     });
 
     window.addEventListener('load', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' }); // 🔹 trocado para suave
+      window.scrollTo({ top: 0, behavior: 'smooth' }); // <-- aqui: smooth no carregamento
       sections.forEach(section => section.classList.remove('active'));
       const defaultSection = document.getElementById('sobre');
       if (defaultSection) defaultSection.classList.add('active');
