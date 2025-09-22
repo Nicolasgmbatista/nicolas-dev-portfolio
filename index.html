@@ -110,7 +110,7 @@
 
     /* Estilo da pastinha de certificado */
     .certificate-folder {
-      @apply bg-gray-800 p-4 rounded-lg shadow-md flex flex-col items-center justify-center text-center relative;
+      @apply bg-gray-800 p-4 rounded-lg shadow-md flex flex-col items-center justify-center text-center relative overflow-hidden;
     }
     .certificate-folder::after {
       content: '';
@@ -121,7 +121,7 @@
       @apply w-32 h-32 object-contain mb-4;
     }
     .certificate-button {
-      @apply bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 mt-4;
+      @apply bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300;
     }
 
     /* Responsivo */
@@ -302,7 +302,7 @@
           <div class="certificate-folder">
             <img src="img/google_alura_logo.png" alt="Logo Imersão Alura + Google" class="certificate-image">
             <p class="text-lg font-semibold text-gray-200">Imersão Alura + Google</p>
-            <a href="certificado/Nicolas Guilherme Batista Malysz (3).pdf" download="Certificado_Nicolas_Batista.pdf" class="certificate-button mt-2">
+            <a href="certificado/Nicolas Guilherme Batista Malysz (3).pdf" download="Certificado_Nicolas_Batista.pdf" class="certificate-button mt-2" title="Baixar Certificado">
               Download
             </a>
           </div>
