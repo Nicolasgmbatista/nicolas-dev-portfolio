@@ -11,10 +11,9 @@
       --sidebar-width: 250px;
       --gap: 20px;
       --right-margin: 20px;
-      --content-max-width: 900px; /* largura usada pelos cards */
+      --content-max-width: 900px;
     }
 
-    /* 🔹 Scroll suave global */
     html {
       scroll-behavior: smooth;
     }
@@ -28,7 +27,6 @@
       display: flex;
     }
 
-    /* Sidebar */
     .sidebar {
       background-color: #2d3748;
       position: fixed;
@@ -43,7 +41,6 @@
       overflow-y: auto;
     }
 
-    /* Navbar */
     .navbar {
       background-color: #2d3748;
       position: fixed;
@@ -76,7 +73,6 @@
     .navbar a { color: #e2e8f0; text-decoration: none; }
     .navbar a:hover { color: #63b3ed; }
 
-    /* Conteúdo */
     .content {
       margin-top: calc(60px + 40px);
       margin-left: calc(var(--sidebar-width) + (var(--gap) * 2));
@@ -85,7 +81,6 @@
       flex: 1;
     }
 
-    /* Cards/sections */
     .section { display: none; padding: 2rem; animation: fadeIn 0.5s ease-in; margin-top: 0; }
     .section.active { display: block; }
 
@@ -108,7 +103,6 @@
 
     @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
 
-    /* Estilo da pastinha de certificado */
     .certificate-folder {
       @apply bg-gray-800 p-4 rounded-lg shadow-md flex flex-col items-center justify-center text-center relative overflow-hidden min-h-[300px];
     }
@@ -125,7 +119,6 @@
       @apply bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300;
     }
 
-    /* Responsivo */
     @media (max-width: 1210px) {
       .navbar {
         left: calc(var(--sidebar-width) + (var(--gap) * 2));
@@ -193,11 +186,11 @@
     <!-- Sobre Section -->
     <section id="sobre" class="section active">
       <div class="card">
-        <div class="flex items-center gap-6 mb-6">
-          <img src="img/polvo_dev.gif" alt="Foto Profissional" class="w-24 h-24 object-cover">
+        <div class="flex items-center justify-between mb-6">
           <h2 class="text-3xl font-bold">Sobre Mim</h2>
+          <img src="img/polvo_dev.gif" alt="Foto Profissional" class="w-24 h-24 object-cover">
         </div>
-        <div class="text-gray-300 pl-[calc(6rem+1.5rem)]">
+        <div class="text-gray-300">
           <h3 class="text-xl font-semibold mb-2">Quem Sou</h3>
           <p class="text-justify">Sou estudante de Ciências da Computação, apaixonado por tecnologia e programação, com experiência prática em Python, aplicada em projetos que consolidaram meu conhecimento e minha capacidade de desenvolver soluções reais e eficientes. Durante a faculdade, tive breve experiência com C# e explorei bastante C, aprofundando conceitos de programação estruturada e lógica. Além disso, Java e C++ são linguagens que pretendo explorar em breve, por serem minhas favoritas e por oferecerem oportunidades de aprendizado avançado em desenvolvimento de software. Desde cedo, explorei a programação de forma prática, fortalecendo lógica, resolução de problemas e criatividade no desenvolvimento de soluções.</p>
 
@@ -373,7 +366,7 @@
         if (targetSection) {
           targetSection.classList.add('active');
           window.scrollTo({
-            top: targetSection.offsetTop - 80, // garante espaço da navbar
+            top: targetSection.offsetTop - 80,
             behavior: 'smooth'
           });
         }
