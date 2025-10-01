@@ -14,7 +14,7 @@
       --content-max-width: 900px; /* largura usada pelos cards */
     }
 
-    /* 🔹 Scroll suave global (adicionado) */
+    /* 🔹 Scroll suave global */
     html {
       scroll-behavior: smooth;
     }
@@ -58,7 +58,7 @@
       border: 1px solid #4a5568;
       z-index: 10;
       border-radius: 15px;
-      height: 60px; /* altura da navbar */
+      height: 60px;
       box-sizing: border-box;
       display: flex;
       justify-content: flex-end;
@@ -78,7 +78,7 @@
 
     /* Conteúdo */
     .content {
-      margin-top: calc(60px + 40px); /* altura da navbar + espaçamento */
+      margin-top: calc(60px + 40px);
       margin-left: calc(var(--sidebar-width) + (var(--gap) * 2));
       margin-right: var(--right-margin);
       min-height: 100vh;
@@ -333,7 +333,7 @@
         </div>
       </div>
     </section>
-    
+
     <!-- Artigos Section -->
     <section id="artigos" class="section">
       <div class="card">
@@ -357,6 +357,7 @@
         </div>
       </div>
     </section>
+  </main>
 
   <!-- JS para navegação -->
   <script>
@@ -380,7 +381,7 @@
     });
 
     window.addEventListener('load', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' }); // <-- aqui: smooth no carregamento
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       sections.forEach(section => section.classList.remove('active'));
       const defaultSection = document.getElementById('sobre');
       if (defaultSection) defaultSection.classList.add('active');
