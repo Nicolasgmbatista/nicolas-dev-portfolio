@@ -7,152 +7,245 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://kit.fontawesome.com/9710e75dd5.js" crossorigin="anonymous"></script>
   <style>
-    :root{
-      --sidebar-width: 250px;
-      --gap: 20px;
-      --right-margin: 20px;
-      --content-max-width: 900px;
-    }
+    :root {
+  --sidebar-width: 250px;
+  --gap: 20px;
+  --right-margin: 20px;
+  --content-max-width: 900px;
+}
 
-    html {
-      scroll-behavior: smooth;
-    }
+html {
+  scroll-behavior: smooth;
+}
 
-    body {
-      background-color: #1a202c;
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      color: #e2e8f0;
-      box-sizing: border-box;
-      display: flex;
-    }
+body {
+  background-color: #252a2e; /* Dark gray background from vCard */
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  color: #cccccc; /* Light gray text */
+  box-sizing: border-box;
+  display: flex;
+}
 
-    .sidebar {
-      background-color: #2d3748;
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      width: var(--sidebar-width);
-      border-radius: 15px;
-      padding: 1rem;
-      border: 1px solid #4a5568;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      height: calc(100vh - 40px);
-      overflow-y: auto;
-    }
+.sidebar {
+  background-color: #1e2326; /* Slightly lighter dark gray for sidebar */
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: var(--sidebar-width);
+  border-radius: 15px;
+  padding: 1rem;
+  border: 1px solid #35393e; /* Medium gray border */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  height: calc(100vh - 40px);
+  overflow-y: auto;
+}
 
-    .navbar {
-      background-color: #2d3748;
-      position: fixed;
-      top: 20px;
-      left: calc(
-        var(--sidebar-width)
-        + (var(--gap) * 2)
-        + ( (100% - var(--sidebar-width) - (var(--gap) * 2) - var(--right-margin) - var(--content-max-width)) / 2 )
-      );
-      width: var(--content-max-width);
-      padding: 1rem;
-      border: 1px solid #4a5568;
-      z-index: 10;
-      border-radius: 15px;
-      height: 60px;
-      box-sizing: border-box;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-    }
+.navbar {
+  background-color: #1e2326; /* Same as sidebar */
+  position: fixed;
+  top: 20px;
+  left: calc(
+    var(--sidebar-width)
+    + (var(--gap) * 2)
+    + ( (100% - var(--sidebar-width) - (var(--gap) * 2) - var(--right-margin) - var(--content-max-width)) / 2 )
+  );
+  width: var(--content-max-width);
+  padding: 1rem;
+  border: 1px solid #35393e; /* Medium gray border */
+  z-index: 10;
+  border-radius: 15px;
+  height: 60px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
 
-    .navbar ul {
-      display: flex;
-      gap: 1rem;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
+.navbar ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
-    .navbar a { color: #e2e8f0; text-decoration: none; }
-    .navbar a:hover { color: #63b3ed; }
+.navbar a {
+  color: #cccccc; /* Light gray text */
+  text-decoration: none;
+}
 
-    .content {
-      margin-top: calc(60px + 40px);
-      margin-left: calc(var(--sidebar-width) + (var(--gap) * 2));
-      margin-right: var(--right-margin);
-      min-height: 100vh;
-      flex: 1;
-    }
+.navbar a:hover {
+  color: #cb2d6f; /* Purple accent for hover */
+}
 
-    .section { display: none; padding: 2rem; animation: fadeIn 0.5s ease-in; margin-top: 0; }
-    .section.active { display: block; }
+.content {
+  margin-top: calc(60px + 40px);
+  margin-left: calc(var(--sidebar-width) + (var(--gap) * 2));
+  margin-right: var(--right-margin);
+  min-height: 100vh;
+  flex: 1;
+}
 
-    .card {
-      background-color: #2d3748;
-      border-radius: 1rem;
-      padding: 2rem;
-      max-width: var(--content-max-width);
-      margin: 0 auto 2rem auto;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
+.section {
+  display: none;
+  padding: 2rem;
+  animation: fadeIn 0.5s ease-in;
+  margin-top: 0;
+}
 
-    .skill-level { width: 100%; height: 10px; background-color: #4a5568; border-radius: 5px; margin: 0.5rem 0; }
-    .skill-level div { height: 100%; background-color: #63b3ed; border-radius: 5px; }
+.section.active {
+  display: block;
+}
 
-    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-    table, th, td { border: 1px solid #4a5568; }
-    th, td { padding: 0.75rem; text-align: center; }
-    th { background-color: #4a5568; }
+.card {
+  background-color: #35393e; /* Medium gray for cards */
+  border-radius: 1rem;
+  padding: 2rem;
+  max-width: var(--content-max-width);
+  margin: 0 auto 2rem auto;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
 
-    @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+.skill-level {
+  width: 100%;
+  height: 10px;
+  background-color: #1e2326; /* Darker gray for skill bar background */
+  border-radius: 5px;
+  margin: 0.5rem 0;
+}
 
-    .certificate-folder {
-      @apply bg-gray-800 p-6 rounded-lg shadow-md flex flex-col items-start justify-between text-left relative overflow-hidden min-h-[300px] border-2 border-gray-700;
-    }
+.skill-level div {
+  height: 100%;
+  background-color: #14a0c7; /* Blue accent for skill bar fill */
+  border-radius: 5px;
+}
 
-    .certificate-folder::before {
-      content: '';
-      @apply absolute top-0 left-8 w-24 h-4 bg-gray-700 rounded-t-lg border border-gray-600 border-b-0 transform -translate-y-full;
-    }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
 
-    .certificate-image {
-      @apply w-32 h-32 object-contain mb-4;
-    }
+table, th, td {
+  border: 1px solid #35393e; /* Medium gray border */
+}
 
-    .certificate-button {
-      @apply bg-gradient-to-r from-blue-600 to-blue-800 text-white px-4 py-2 rounded-lg hover:from-blue-700 hover:to-blue-900 transition duration-300 float-right;
-    }
+th, td {
+  padding: 0.75rem;
+  text-align: center;
+}
 
-    @media (max-width: 1210px) {
-      .navbar {
-        left: calc(var(--sidebar-width) + (var(--gap) * 2));
-        right: var(--right-margin);
-        width: auto;
-      }
+th {
+  background-color: #1e2326; /* Darker gray for table headers */
+}
 
-      .content {
-        margin-left: calc(var(--sidebar-width) + (var(--gap) * 2));
-        margin-right: var(--right-margin);
-      }
-    }
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
 
-    @media (max-width: 1024px) {
-      .sidebar {
-        position: relative;
-        width: calc(100% - 40px);
-        left: 20px;
-        top: 20px;
-        height: auto;
-        margin-bottom: 10px;
-      }
-      .navbar { left: 20px; right: 20px; width: auto; }
-      .content { margin-left: 20px; margin-right: 20px; margin-top: calc(60px + 20px); }
-      .card { margin-top: 10px; }
-      .certificate-image { @apply w-24 h-24; }
-    }
+.certificate-folder {
+  background-color: #35393e; /* Medium gray for certificate folder */
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  min-height: 300px;
+  border: 2px solid #1e2326; /* Darker gray border */
+}
 
-    @media (max-width: 640px) {
-      .certificate-folder .certificate-button {
-        @apply float-none w-full text-center;
-      }
-    }
+.certificate-folder::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 2rem;
+  width: 6rem;
+  height: 0.25rem;
+  background-color: #1e2326; /* Darker gray for folder tab */
+  border-radius: 0.25rem 0.25rem 0 0;
+  border: 1px solid #35393e; /* Medium gray border */
+  border-bottom: 0;
+  transform: translateY(-100%);
+}
+
+.certificate-image {
+  width: 8rem;
+  height: 8rem;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.certificate-button {
+  background: linear-gradient(to right, #cb2d6f, #14a0c7); /* Gradient from purple to blue */
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: background 0.3s;
+  float: right;
+}
+
+.certificate-button:hover {
+  background: linear-gradient(to right, #e8458b, #2bb8e0); /* Lighter gradient for hover */
+}
+
+@media (max-width: 1210px) {
+  .navbar {
+    left: calc(var(--sidebar-width) + (var(--gap) * 2));
+    right: var(--right-margin);
+    width: auto;
+  }
+
+  .content {
+    margin-left: calc(var(--sidebar-width) + (var(--gap) * 2));
+    margin-right: var(--right-margin);
+  }
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    position: relative;
+    width: calc(100% - 40px);
+    left: 20px;
+    top: 20px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  .navbar {
+    left: 20px;
+    right: 20px;
+    width: auto;
+  }
+
+  .content {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: calc(60px + 20px);
+  }
+
+  .card {
+    margin-top: 10px;
+  }
+
+  .certificate-image {
+    width: 6rem;
+    height: 6rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .certificate-folder .certificate-button {
+    float: none;
+    width: 100%;
+    text-align: center;
+  }
+}
   </style>
 </head>
 <body>
