@@ -306,7 +306,7 @@
         </tbody>
       </table>
 
-      <h3 class="text-xl font-semibold mt-6 mb-2">2º Semestre (2025/2 - Trancado)<span class="ml-2 inline-block cursor-pointer text-blue-400 bg-white rounded-full w-5 h-5 flex items-center justify-center" onclick="this.nextElementSibling.classList.toggle('hidden')">?</span><span class="hidden text-sm text-gray-300 mt-1">Trancado por motivos de erro de cadastro dentro da UNOESC, retorno previsto para o início do próximo ano.</span></h3>
+      <h3 class="text-xl font-semibold mt-6 mb-2">2º Semestre (2025/2 - Trancado)<span class="ml-2 relative inline-block cursor-pointer" onmouseover="this.querySelector('.tooltip').classList.add('show')" onmouseout="this.querySelector('.tooltip').classList.remove('show')" onclick="this.querySelector('.tooltip').classList.toggle('show')"><span class="text-blue-400 bg-white rounded-full w-5 h-5 flex items-center justify-center">?</span><span class="tooltip hidden absolute bg-gray-800 text-white text-sm p-2 rounded-lg shadow-lg -left-2 top-full mt-2 w-48 z-10">Trancado por motivos de erro de cadastro dentro da UNOESC, retorno previsto para o início do próximo ano.</span></span></h3>
       <table>
         <thead><tr><th>Disciplina</th><th>Carga Horária</th><th>Status</th></tr></thead>
         <tbody>
