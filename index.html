@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfólio de Nicolas</title>
+  <link rel="icon" type="image/jpg" href="img/logosite.jpg">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://kit.fontawesome.com/9710e75dd5.js" crossorigin="anonymous"></script>
   <style>
@@ -94,7 +95,7 @@
     }
 
     .skill-level { width: 100%; height: 10px; background-color: #4a4a4a; border-radius: 5px; margin: 0.5rem 0; }
-    .skill-level div { height: 100%; background-color: #63b3ed; border-radius: 5px; }
+    .skill-level div { height: 100%; background: linear-gradient(to right, #ff6b6b, #ffd700, #ff9500, #4caf50, #1976d2, #6a1b9a); border-radius: 5px; }
 
     table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
     table, th, td { border: 1px solid #4a4a4a; }
@@ -117,7 +118,9 @@
     }
 
     .certificate-button {
-      @apply bg-gradient-to-r from-blue-600 to-blue-800 text-white px-4 py-2 rounded-lg hover:from-blue-700 hover:to-blue-900 transition duration-300 float-right;
+      @apply bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-3 rounded-lg hover:from-blue-700 hover:to-blue-900 transition duration-300 float-right shadow-md border border-blue-500;
+      font-size: 1.1rem;
+      font-weight: 500;
     }
 
     @media (max-width: 1210px) {
@@ -151,6 +154,8 @@
     @media (max-width: 640px) {
       .certificate-folder .certificate-button {
         @apply float-none w-full text-center;
+        font-size: 1rem;
+        padding: 0.75rem 1.5rem;
       }
     }
   </style>
