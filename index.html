@@ -114,8 +114,17 @@
     }
 
     .certificate-image {
-      @apply w-32 h-32 object-contain mb-4;
-    }
+  border: 2px solid #4a4a4a; /* contorno sutil e escuro */
+  border-radius: 12px;        /* cantos arredondados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* sombra suave */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.certificate-folder:hover .certificate-image {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
 
     .certificate-button {
       @apply bg-gradient-to-r from-gray-700 to-gray-800 text-white px-6 py-3 rounded-lg hover:from-gray-600 hover:to-gray-700 transition duration-300 shadow-md;
